@@ -449,27 +449,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S53 . . . ]
 "620 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic12f675.h
 [v _ANSELbits `VS53  1 e@159 ]
-"49 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"49 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _TIMEOUT `ui  1 e ]
-"50 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"50 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _PREPULSE `ui  1 e ]
-"53 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"53 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _timer `um  1 s ]
-"54 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"54 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _dataready `uc  1 s ]
-"56 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"56 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _necpoj `uc  1 s ]
-"62 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"62 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _address `uc  1 s ]
-"62 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"62 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _notaddress `uc  1 s ]
-"63 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"63 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _command `uc  1 s ]
-"63 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"63 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _notcommand `uc  1 s ]
-"66 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"66 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _timerInterruptIsr `(v  0 ef ]
-"65 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"65 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _interruptOnChangeIsr `(v  0 ef ]
 [p mainexit ]
 [; ;pic.h: 9: extern unsigned char __osccal_val(void);
@@ -896,7 +896,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, eeprom unsigned char *from, unsigned char size);
 [; ;eeprom_routines.h: 44: extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;pic.h: 154: extern void _delay(unsigned long);
-"27 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"27 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [; ;main.c: 27: asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0x31FC & 0x31F7 & 0x31FF & 0x31DF & 0x31FF & 0x31FF");
 [; 	psect config,class=CONFIG,delta=2 ;#
 [; 	dw 0x31FC & 0x31F7 & 0x31FF & 0x31DF & 0x31FF & 0x31FF ;#

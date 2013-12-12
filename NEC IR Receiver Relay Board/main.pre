@@ -1,5 +1,5 @@
 
-# 1 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+# 1 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 
 # 9 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic.h"
 extern unsigned char __osccal_val(void);
@@ -567,7 +567,7 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0x31FC & 0x31F7 & 0x31FF & 0x31DF & 0x31FF & 0x31FF");
 
 # 49

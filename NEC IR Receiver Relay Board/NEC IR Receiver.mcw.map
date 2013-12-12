@@ -232,31 +232,31 @@ _timerInterruptIsr             text79       0145
 btemp                          (abs)        005E
 clear_ram                      clrtext      0166
 end_of_initialization          cinit        0164
+i1l1321                                         
 i1l1325                                         
 i1l1329                                         
+i1l1331                                         
 i1l1333                                         
 i1l1335                                         
-i1l1337                                         
 i1l1339                                         
+i1l1341                                         
 i1l1343                                         
 i1l1345                                         
-i1l1347                                         
-i1l1349                                         
+i1l1355                                         
+i1l1357                                         
 i1l1359                                         
 i1l1361                                         
-i1l1363                                         
-i1l1365                                         
-i1l1373                                         
-i1l1375                                         
-i1l1381                                         
+i1l1369                                         
+i1l1371                                         
+i1l1377                                         
+i1l1383                                         
 i1l1387                                         
-i1l1391                                         
-i1l1399                                         
-i1l1401                                         
-i1l1411                                         
+i1l1395                                         
+i1l1397                                         
+i1l1407                                         
+i1l1419                                         
+i1l1421                                         
 i1l1423                                         
-i1l1425                                         
-i1l1427                                         
 interruptOnChangeIsr@pin       cstackBANK0  0033
 interruptOnChangeIsr@rxbuffer  bssBANK0     0020
 interruptOnChangeIsr@tdiff     cstackBANK0  0030
@@ -267,6 +267,8 @@ intlevel2                      functab      0000
 intlevel3                      functab      0000
 intlevel4                      functab      0000
 intlevel5                      functab      0000
+l1429                                           
+l1431                                           
 l1433                                           
 l1435                                           
 l1437                                           
@@ -278,16 +280,14 @@ l1447
 l1449                                           
 l1451                                           
 l1453                                           
-l1455                                           
-l1457                                           
+l1473                                           
+l1475                                           
 l1477                                           
 l1479                                           
 l1481                                           
 l1483                                           
 l1485                                           
 l1487                                           
-l1489                                           
-l1491                                           
 reset_vec                      reset_vec    0000
 saved_w                        (abs)        005E
 start                          init         000B

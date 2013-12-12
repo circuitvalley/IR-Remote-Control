@@ -230,7 +230,7 @@
 `uc 1 ADCS2 1 0 :1:6 
 ]
 [u S609 . 1 `S598 1 . 1 0 `S601 1 . 1 0 ]
-"70 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"70 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v F573 `(v  1 t 0 ]
 "5 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\abdiv.c
 [v ___abdiv `(c  1 e 1 0 ]
@@ -304,7 +304,7 @@
 [v ___tmul `(um  1 e 3 0 ]
 "3 C:\Program Files (x86)\HI-TECH Software\PICC\9.83\sources\wmul.c
 [v ___wmul `(ui  1 e 2 0 ]
-"70 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"70 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _t0intr `I(v  1 e 0 0 ]
 "90
 [v _main `(v  1 e 0 0 ]
@@ -680,7 +680,7 @@
 [v _EECON1bits `VES580  1 e 1 @156 ]
 "620
 [v _ANSELbits `VES609  1 e 1 @159 ]
-"49 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c
+"49 C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c
 [v _TIMEOUT `ui  1 e 2 0 ]
 "50
 [v _PREPULSE `ui  1 e 2 0 ]

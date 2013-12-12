@@ -1,7 +1,7 @@
 
 
 HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
-                                                                                               Thu Dec 12 19:44:46 2013
+                                                                                               Thu Dec 12 20:12:29 2013
 
 HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
      1                           	processor	12F675
@@ -232,7 +232,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    226                           
    227 ;; *************** function _main *****************
    228 ;; Defined at:
-   229 ;;		line 90 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+   229 ;;		line 90 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
    230 ;; Parameters:    Size  Location     Type
    231 ;;		None
    232 ;; Auto vars:     Size  Location     Type
@@ -315,15 +315,15 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    309  00DF  081A               	movf	26,w	;volatile
    310  00E0  1283               	bcf	3,5	;RP0=0, select bank0
    311  00E1  0085               	movwf	5	;volatile
-   312  00E2                     l1459:	
+   312  00E2                     l1455:	
    313                           
    314                           ;main.c: 114: {
    315                           ;main.c: 116: if(dataready)
    316  00E2  0829               	movf	_dataready,w
    317  00E3  1903               	btfsc	3,2
-   318  00E4  28E2               	goto	l1459
-   319  00E5  2911               	goto	l1473
-   320  00E6                     l1463:	
+   318  00E4  28E2               	goto	l1455
+   319  00E5  2911               	goto	l1469
+   320  00E6                     l1459:	
    321  00E6  3000               	movlw	0
    322  00E7  1C05               	btfss	5,0	;volatile
    323  00E8  3001               	movlw	1
@@ -332,7 +332,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    326  00EB  0636               	xorwf	??_main,w
    327  00EC  39FE               	andlw	-2
    328  00ED  2909               	goto	L3
-   329  00EE                     l1465:	
+   329  00EE                     l1461:	
    330                           ;main.c: 129: break;
    331                           
    332  00EE  3000               	movlw	0
@@ -344,7 +344,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    338  00F4  0636               	xorwf	??_main,w
    339  00F5  39FD               	andlw	-3
    340  00F6  2909               	goto	L3
-   341  00F7                     l1467:	
+   341  00F7                     l1463:	
    342                           ;main.c: 131: break;
    343                           
    344  00F7  3000               	movlw	0
@@ -357,7 +357,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    351  00FE  0636               	xorwf	??_main,w
    352  00FF  39FB               	andlw	-5
    353  0100  2909               	goto	L3
-   354  0101                     l1469:	
+   354  0101                     l1465:	
    355                           ;main.c: 133: break;
    356                           
    357  0101  3000               	movlw	0
@@ -373,7 +373,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    367  010A  0085               	movwf	5	;volatile
    368                           
    369                           ;main.c: 135: break;
-   370  010B  2922               	goto	l1475
+   370  010B  2922               	goto	l1471
    371  010C                     l379:	
    372                           ;main.c: 136: case 0xB0: GPIObits.GPIO0 = 0;
    373                           
@@ -389,8 +389,8 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    383  010F  1205               	bcf	5,4	;volatile
    384                           
    385                           ;main.c: 140: break;
-   386  0110  2922               	goto	l1475
-   387  0111                     l1473:	
+   386  0110  2922               	goto	l1471
+   387  0111                     l1469:	
    388  0111  0828               	movf	_command,w
    389                           
    390                           ; Switch size 1, requested type "space"
@@ -403,21 +403,21 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    397                           ;	Chosen strategy is simple_byte
    398  0112  3A30               	xorlw	48	; case 48
    399  0113  1903               	skipnz
-   400  0114  2901               	goto	l1469
+   400  0114  2901               	goto	l1465
    401  0115  3A60               	xorlw	96	; case 80
    402  0116  1903               	skipnz
-   403  0117  28E6               	goto	l1463
+   403  0117  28E6               	goto	l1459
    404  0118  3AE0               	xorlw	224	; case 176
    405  0119  1903               	skipnz
    406  011A  290C               	goto	l379
    407  011B  3A68               	xorlw	104	; case 216
    408  011C  1903               	skipnz
-   409  011D  28EE               	goto	l1465
+   409  011D  28EE               	goto	l1461
    410  011E  3A20               	xorlw	32	; case 248
    411  011F  1903               	skipnz
-   412  0120  28F7               	goto	l1467
-   413  0121  2922               	goto	l1475
-   414  0122                     l1475:	
+   412  0120  28F7               	goto	l1463
+   413  0121  2922               	goto	l1471
+   414  0122                     l1471:	
    415                           
    416                           ;main.c: 145: EEADR = 0x00;
    417  0122  1683               	bsf	3,5	;RP0=1, select bank1
@@ -452,7 +452,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    446                           ;main.c: 154: dataready=0;
    447  0130  1283               	bcf	3,5	;RP0=0, select bank0
    448  0131  01A9               	clrf	_dataready
-   449  0132  28E2               	goto	l1459
+   449  0132  28E2               	goto	l1455
    450  0133                     __end_of_main:	
    451                           
    452                           	psect	text77
@@ -462,7 +462,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    456                           
    457 ;; *************** function _t0intr *****************
    458 ;; Defined at:
-   459 ;;		line 70 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+   459 ;;		line 70 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
    460 ;; Parameters:    Size  Location     Type
    461 ;;		None
    462 ;; Auto vars:     Size  Location     Type
@@ -554,7 +554,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    548                           
    549 ;; *************** function _interruptOnChangeIsr *****************
    550 ;; Defined at:
-   551 ;;		line 163 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+   551 ;;		line 163 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
    552 ;; Parameters:    Size  Location     Type
    553 ;;		None
    554 ;; Auto vars:     Size  Location     Type
@@ -646,7 +646,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    640  003E  022D               	subwf	??_interruptOnChangeIsr,w
    641  003F                     u23_25:	
    642  003F  1803               	skipnc
-   643  0040  28B3               	goto	i1l1415
+   643  0040  28B3               	goto	i1l1411
    644  0041  0839               	movf	_TIMEOUT,w
    645  0042  00AD               	movwf	??_interruptOnChangeIsr
    646  0043  083A               	movf	_TIMEOUT+1,w
@@ -664,25 +664,25 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    658  004F  0230               	subwf	interruptOnChangeIsr@tdiff,w
    659  0050                     u24_25:	
    660  0050  1803               	skipnc
-   661  0051  28B3               	goto	i1l1415
+   661  0051  28B3               	goto	i1l1411
    662                           
    663                           ;main.c: 205: {
    664                           ;main.c: 210: if(necpoj==1 || necpoj==2)
    665  0052  032A               	decf	_necpoj,w
    666  0053  1903               	skipnz
-   667  0054  2859               	goto	i1l1357
+   667  0054  2859               	goto	i1l1353
    668  0055  082A               	movf	_necpoj,w
    669  0056  3A02               	xorlw	2
    670  0057  1D03               	skipz
-   671  0058  287A               	goto	i1l1383
-   672  0059                     i1l1357:	
+   671  0058  287A               	goto	i1l1379
+   672  0059                     i1l1353:	
    673                           
    674                           ;main.c: 211: {
    675                           ;main.c: 213: if((pin==1) && (necpoj==1))
    676  0059  0B33               	decfsz	interruptOnChangeIsr@pin,w
-   677  005A  2867               	goto	i1l1367
+   677  005A  2867               	goto	i1l1363
    678  005B  0B2A               	decfsz	_necpoj,w
-   679  005C  2867               	goto	i1l1367
+   679  005C  2867               	goto	i1l1363
    680  005D  3092               	movlw	146
    681                           
    682                           ;main.c: 214: {
@@ -702,16 +702,16 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    696                           
    697                           ;main.c: 218: }
    698  0066  0008               	return
-   699  0067                     i1l1367:	
+   699  0067                     i1l1363:	
    700                           
    701                           ;main.c: 219: else if((pin==0)&& (necpoj ==2))
    702  0067  08B3               	movf	interruptOnChangeIsr@pin,f
    703  0068  1D03               	skipz
-   704  0069  2877               	goto	i1l1377
+   704  0069  2877               	goto	i1l1373
    705  006A  082A               	movf	_necpoj,w
    706  006B  3A02               	xorlw	2
    707  006C  1D03               	skipz
-   708  006D  2877               	goto	i1l1377
+   708  006D  2877               	goto	i1l1373
    709  006E  3005               	movlw	5
    710                           
    711                           ;main.c: 220: {
@@ -730,26 +730,26 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    724                           
    725                           ;main.c: 226: }
    726  0076  0008               	return
-   727  0077                     i1l1377:	
+   727  0077                     i1l1373:	
    728                           
    729                           ;main.c: 227: else
    730                           ;main.c: 228: {
    731                           ;main.c: 229: necpoj = 0;
    732  0077  01AA               	clrf	_necpoj
-   733  0078                     i1l1379:	
+   733  0078                     i1l1375:	
    734                           
    735                           ;main.c: 230: TIMEOUT = 11044;
    736                           
    737                           ;main.c: 231: PREPULSE = 8032;
    738  0078  20C1               	fcall	PL2	;call to abstracted procedure
    739  0079  0008               	return
-   740  007A                     i1l1383:	
+   740  007A                     i1l1379:	
    741                           
    742                           ;main.c: 234: else if(necpoj>2)
    743  007A  3003               	movlw	3
    744  007B  022A               	subwf	_necpoj,w
    745  007C  1C03               	skipc
-   746  007D  28B1               	goto	i1l1413
+   746  007D  28B1               	goto	i1l1409
    747                           
    748                           ;main.c: 235: {
    749                           ;main.c: 237: necpoj++;
@@ -757,7 +757,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    751                           
    752                           ;main.c: 239: if(necpoj&0x01)
    753  007F  1C2A               	btfss	_necpoj,0
-   754  0080  2892               	goto	i1l1395
+   754  0080  2892               	goto	i1l1391
    755  0081  3000               	movlw	0
    756                           
    757                           ;main.c: 241: {
@@ -784,7 +784,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    778                           ;main.c: 245: {
    779                           ;main.c: 246: rxbuffer = rxbuffer | 0x1;
    780  0091  1420               	bsf	interruptOnChangeIsr@rxbuffer,0
-   781  0092                     i1l1395:	
+   781  0092                     i1l1391:	
    782                           ;main.c: 248: }
    783                           
    784                           
@@ -823,11 +823,11 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    817  00A2  0827               	movf	_address,w
    818  00A3  052B               	andwf	_notaddress,w
    819  00A4  1D03               	btfss	3,2
-   820  00A5  28AD               	goto	i1l1407
+   820  00A5  28AD               	goto	i1l1403
    821  00A6  0828               	movf	_command,w
    822  00A7  052C               	andwf	_notcommand,w
    823  00A8  1D03               	btfss	3,2
-   824  00A9  28AD               	goto	i1l1407
+   824  00A9  28AD               	goto	i1l1403
    825                           
    826                           ;main.c: 267: {
    827                           ;main.c: 268: dataready =1;
@@ -835,14 +835,14 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    829  00AB  0AA9               	incf	_dataready,f
    830                           
    831                           ;main.c: 269: }
-   832  00AC  28AE               	goto	i1l1409
-   833  00AD                     i1l1407:	
+   832  00AC  28AE               	goto	i1l1405
+   833  00AD                     i1l1403:	
    834                           
    835                           ;main.c: 270: else
    836                           ;main.c: 271: {
    837                           ;main.c: 272: dataready=0;
    838  00AD  01A9               	clrf	_dataready
-   839  00AE                     i1l1409:	
+   839  00AE                     i1l1405:	
    840                           
    841                           ;main.c: 273: }
    842                           ;main.c: 274: TIMEOUT = 11044;
@@ -853,7 +853,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    847                           ;main.c: 276: necpoj=0;
    848  00AF  01AA               	clrf	_necpoj
    849  00B0  0008               	return
-   850  00B1                     i1l1413:	
+   850  00B1                     i1l1409:	
    851                           
    852                           ;main.c: 280: else
    853                           ;main.c: 281: {
@@ -862,7 +862,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    856                           ;main.c: 284: PREPULSE = 8032;
    857  00B1  20C1               	fcall	PL2	;call to abstracted procedure
    858  00B2  0008               	return
-   859  00B3                     i1l1415:	
+   859  00B3                     i1l1411:	
    860                           ;main.c: 285: }
    861                           ;main.c: 290: }
    862                           
@@ -872,7 +872,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    866                           ;main.c: 294: if(pin==0)
    867  00B3  08B3               	movf	interruptOnChangeIsr@pin,f
    868  00B4  1D03               	skipz
-   869  00B5  28B9               	goto	i1l1419
+   869  00B5  28B9               	goto	i1l1415
    870                           
    871                           ;main.c: 295: {
    872                           ;main.c: 296: necpoj = 1;
@@ -880,14 +880,14 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    874  00B7  0AAA               	incf	_necpoj,f
    875                           
    876                           ;main.c: 297: }
-   877  00B8  28BA               	goto	i1l1421
-   878  00B9                     i1l1419:	
+   877  00B8  28BA               	goto	i1l1417
+   878  00B9                     i1l1415:	
    879                           
    880                           ;main.c: 298: else
    881                           ;main.c: 299: {
    882                           ;main.c: 300: necpoj = 0;
    883  00B9  01AA               	clrf	_necpoj
-   884  00BA                     i1l1421:	
+   884  00BA                     i1l1417:	
    885                           
    886                           ;main.c: 301: }
    887                           ;main.c: 303: address = 0xFF;
@@ -905,7 +905,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    899                           
    900                           ;main.c: 307: dataready = 0x000;
    901  00BF  01A9               	clrf	_dataready
-   902  00C0  2878               	goto	i1l1379
+   902  00C0  2878               	goto	i1l1375
    903  00C1                     __end_of_interruptOnChangeIsr:	
    904  00C1                     PL2:	
    905  00C1  3024               	movlw	36
@@ -925,7 +925,7 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
    919                           
    920 ;; *************** function _timerInterruptIsr *****************
    921 ;; Defined at:
-   922 ;;		line 315 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+   922 ;;		line 315 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
    923 ;; Parameters:    Size  Location     Type
    924 ;;		None
    925 ;; Auto vars:     Size  Location     Type
@@ -988,19 +988,19 @@ HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
 
 
 HI-TECH Software PICC Macro Assembler V9.83 build 10920 
-Symbol Table                                                                                   Thu Dec 12 19:44:46 2013
+Symbol Table                                                                                   Thu Dec 12 20:12:29 2013
 
                            fsr 0004                            l379 010C                            _IOC 0096  
-                          indf 0000                           l1441 0000                           l1433 0000  
-                         l1451 0000                           l1443 0000                           l1435 0000  
-                         l1453 0000                           l1445 0000                           l1437 0000  
-                         l1463 00E6                           l1455 0000                           l1447 0000  
-                         l1439 0000                           l1481 0000                           l1465 00EE  
-                         l1473 0111                           l1457 0000                           l1449 0000  
-                         l1491 0000                           l1483 0000                           l1467 00F7  
-                         l1475 0122                           l1459 00E2                           l1485 0000  
-                         l1477 0000                           l1469 0101                           l1487 0000  
-                         l1479 0000                           l1489 0000                           _GPIO 0005  
+                          indf 0000                           l1431 0000                           l1441 0000  
+                         l1433 0000                           l1451 0000                           l1443 0000  
+                         l1435 0000                           l1461 00EE                           l1453 0000  
+                         l1445 0000                           l1437 0000                           l1429 0000  
+                         l1463 00F7                           l1471 0122                           l1455 00E2  
+                         l1447 0000                           l1439 0000                           l1481 0000  
+                         l1473 0000                           l1465 0101                           l1449 0000  
+                         l1483 0000                           l1475 0000                           l1459 00E6  
+                         l1485 0000                           l1477 0000                           l1469 0111  
+                         l1487 0000                           l1479 0000                           _GPIO 0005  
                          _TMR0 0001                           _main 00CA                           btemp 005E  
                          start 000B                          ?_main 002D                          _EEADR 009B  
                         _CMCON 0019                          _ANSEL 009F                          i1l365 0138  
@@ -1008,19 +1008,19 @@ Symbol Table                                                                    
                         u24_25 0050                          u33_25 0090                          _timer 0024  
                         pclath 000A                          status 0003                          wtemp0 005E  
                  __end_of_main 0133           _interruptOnChangeIsr 0010                         ??_main 0036  
-                       _EEDATA 009A                         _EECON2 009D                         i1l1401 0000  
-                       i1l1411 0000                         i1l1421 00BA                         i1l1413 00B1  
-                       i1l1333 0000                         i1l1325 0000                         i1l1423 0000  
-                       i1l1407 00AD                         i1l1415 00B3                         i1l1343 0000  
-                       i1l1335 0000                         i1l1425 0000                         i1l1409 00AE  
-                       i1l1361 0000                         i1l1345 0000                         i1l1337 0000  
-                       i1l1329 0000                         i1l1339 0000                         i1l1427 0000  
-                       i1l1419 00B9                         i1l1363 0000                         i1l1347 0000  
-                       i1l1381 0000                         i1l1373 0000                         i1l1365 0000  
-                       i1l1357 0059                         i1l1349 0000                         i1l1391 0000  
-                       i1l1375 0000                         i1l1359 0000                         i1l1367 0067  
-                       i1l1383 007A                         i1l1377 0077                         i1l1395 0092  
-                       i1l1387 0000                         i1l1379 0078                         i1l1399 0000  
+                       _EEDATA 009A                         _EECON2 009D                         i1l1321 0000  
+                       i1l1403 00AD                         i1l1411 00B3                         i1l1331 0000  
+                       i1l1421 0000                         i1l1405 00AE                         i1l1341 0000  
+                       i1l1333 0000                         i1l1325 0000                         i1l1335 0000  
+                       i1l1423 0000                         i1l1415 00B9                         i1l1407 0000  
+                       i1l1343 0000                         i1l1417 00BA                         i1l1409 00B1  
+                       i1l1361 0000                         i1l1353 0059                         i1l1345 0000  
+                       i1l1329 0000                         i1l1419 0000                         i1l1371 0000  
+                       i1l1355 0000                         i1l1363 0067                         i1l1339 0000  
+                       i1l1373 0077                         i1l1357 0000                         i1l1391 0092  
+                       i1l1383 0000                         i1l1375 0078                         i1l1359 0000  
+                       i1l1377 0000                         i1l1369 0000                         i1l1395 0000  
+                       i1l1387 0000                         i1l1379 007A                         i1l1397 0000  
                        _TRISIO 0085                         _t0intr 0133                         _necpoj 002A  
         ?_interruptOnChangeIsr 002D                         clrloop 0167                         saved_w 005E  
                __pcstackCOMMON 0000                   __pidataBANK0 0000                     __pbssBANK0 0020  

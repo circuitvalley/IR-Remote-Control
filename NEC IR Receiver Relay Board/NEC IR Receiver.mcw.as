@@ -39,9 +39,9 @@ fsr0	equ	4
 c	equ	1
 z	equ	0
 pclath	equ	10
-# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	psect config,class=CONFIG,delta=2 ;#
-# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	dw 0x31FC & 0x31F7 & 0x31FF & 0x31DF & 0x31FF & 0x31FF ;#
 	FNROOT	_main
 	FNCALL	_t0intr,_timerInterruptIsr
@@ -54,7 +54,7 @@ pclath	equ	10
 psect	idataBANK0,class=CODE,space=0,delta=2
 global __pidataBANK0
 __pidataBANK0:
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	50
 
 ;initializer for _PREPULSE
@@ -137,13 +137,13 @@ _notcommand:
 psect	dataBANK0,class=BANK0,space=1
 global __pdataBANK0
 __pdataBANK0:
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	50
 _PREPULSE:
        ds      2
 
 psect	dataBANK0
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	49
 _TIMEOUT:
        ds      2
@@ -311,7 +311,7 @@ __pmaintext:
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 90 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+;;		line 90 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -338,7 +338,7 @@ __pmaintext:
 ;; This function uses a non-reentrant model
 ;;
 psect	maintext
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	90
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
@@ -348,19 +348,19 @@ _main:
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0]
 	line	92
 	
-l1433:	
+l1429:	
 ;main.c: 92: CMCON=0x7;
 	movlw	(07h)
 	movwf	(25)	;volatile
 	line	93
 	
-l1435:	
+l1431:	
 ;main.c: 93: ANSEL=0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	clrf	(159)^080h	;volatile
 	line	94
 	
-l1437:	
+l1433:	
 ;main.c: 94: TRISIO=0x8;
 	movlw	(08h)
 	movwf	(133)^080h	;volatile
@@ -370,45 +370,45 @@ l1437:
 	clrf	(1)	;volatile
 	line	96
 	
-l1439:	
+l1435:	
 ;main.c: 96: OPTION_REG = 0x88;
 	movlw	(088h)
 	bsf	status, 5	;RP0=1, select bank1
 	movwf	(129)^080h	;volatile
 	line	99
 	
-l1441:	
+l1437:	
 ;main.c: 99: IOC = 0x8;
 	movlw	(08h)
 	movwf	(150)^080h	;volatile
 	line	100
 	
-l1443:	
+l1439:	
 ;main.c: 100: INTCONbits.T0IE = 1;
 	bsf	(11),5	;volatile
 	line	101
 	
-l1445:	
+l1441:	
 ;main.c: 101: INTCONbits.T0IF = 0;
 	bcf	(11),2	;volatile
 	line	102
 	
-l1447:	
+l1443:	
 ;main.c: 102: INTCONbits.GPIE = 1;
 	bsf	(11),3	;volatile
 	line	103
 	
-l1449:	
+l1445:	
 ;main.c: 103: INTCONbits.GPIF = 0;
 	bcf	(11),0	;volatile
 	line	104
 	
-l1451:	
+l1447:	
 ;main.c: 104: INTCONbits.PEIE = 1;
 	bsf	(11),6	;volatile
 	line	105
 	
-l1453:	
+l1449:	
 ;main.c: 105: INTCONbits.GIE = 1;
 	bsf	(11),7	;volatile
 	line	109
@@ -416,30 +416,30 @@ l1453:
 	clrf	(155)^080h	;volatile
 	line	110
 	
-l1455:	
+l1451:	
 ;main.c: 110: EECON1bits.RD = 1;
 	bsf	(156)^080h,0	;volatile
 	line	111
 	
-l1457:	
+l1453:	
 ;main.c: 111: GPIO = EEDATA;
 	movf	(154)^080h,w	;volatile
 	bcf	status, 5	;RP0=0, select bank0
 	movwf	(5)	;volatile
 	line	116
 	
-l1459:	
+l1455:	
 ;main.c: 114: {
 ;main.c: 116: if(dataready)
 	movf	(_dataready),w
 	skipz
 	goto	u380
-	goto	l1459
+	goto	l1455
 u380:
-	goto	l1473
+	goto	l1469
 	line	128
 	
-l1463:	
+l1459:	
 	movlw	0
 	btfss	(5),0	;volatile
 	movlw	1
@@ -451,10 +451,10 @@ l1463:
 	movwf	(5)	;volatile
 	line	129
 ;main.c: 129: break;
-	goto	l1475
+	goto	l1471
 	line	130
 	
-l1465:	
+l1461:	
 	movlw	0
 	btfss	(5),1	;volatile
 	movlw	1
@@ -467,10 +467,10 @@ l1465:
 	movwf	(5)	;volatile
 	line	131
 ;main.c: 131: break;
-	goto	l1475
+	goto	l1471
 	line	132
 	
-l1467:	
+l1463:	
 	movlw	0
 	btfss	(5),2	;volatile
 	movlw	1
@@ -484,10 +484,10 @@ l1467:
 	movwf	(5)	;volatile
 	line	133
 ;main.c: 133: break;
-	goto	l1475
+	goto	l1471
 	line	134
 	
-l1469:	
+l1465:	
 	movlw	0
 	btfss	(5),4	;volatile
 	movlw	1
@@ -500,7 +500,7 @@ l1469:
 	movwf	(5)	;volatile
 	line	135
 ;main.c: 135: break;
-	goto	l1475
+	goto	l1471
 	line	136
 ;main.c: 136: case 0xB0: GPIObits.GPIO0 = 0;
 	
@@ -517,10 +517,10 @@ l379:
 	bcf	(5),4	;volatile
 	line	140
 ;main.c: 140: break;
-	goto	l1475
+	goto	l1471
 	line	126
 	
-l1473:	
+l1469:	
 	movf	(_command),w
 	; Switch size 1, requested type "space"
 ; Number of cases is 5, Range of values is 48 to 248
@@ -534,31 +534,31 @@ l1473:
 	opt asmopt_off
 	xorlw	48^0	; case 48
 	skipnz
-	goto	l1469
+	goto	l1465
 	xorlw	80^48	; case 80
 	skipnz
-	goto	l1463
+	goto	l1459
 	xorlw	176^80	; case 176
 	skipnz
 	goto	l379
 	xorlw	216^176	; case 216
 	skipnz
-	goto	l1465
+	goto	l1461
 	xorlw	248^216	; case 248
 	skipnz
-	goto	l1467
-	goto	l1475
+	goto	l1463
+	goto	l1471
 	opt asmopt_on
 
 	line	145
 	
-l1475:	
+l1471:	
 ;main.c: 145: EEADR = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	clrf	(155)^080h	;volatile
 	line	146
 	
-l1477:	
+l1473:	
 ;main.c: 146: EEDATA = GPIO;
 	bcf	status, 5	;RP0=0, select bank0
 	movf	(5),w	;volatile
@@ -566,43 +566,43 @@ l1477:
 	movwf	(154)^080h	;volatile
 	line	147
 	
-l1479:	
+l1475:	
 ;main.c: 147: EECON1bits.WREN = 1;
 	bsf	(156)^080h,2	;volatile
 	line	148
 	
-l1481:	
+l1477:	
 ;main.c: 148: INTCONbits.GIE = 0;
 	bcf	(11),7	;volatile
 	line	149
 	
-l1483:	
+l1479:	
 ;main.c: 149: EECON2 = 0x55;
 	movlw	(055h)
 	movwf	(157)^080h	;volatile
 	line	150
 	
-l1485:	
+l1481:	
 ;main.c: 150: EECON2 = 0xAA;
 	movlw	(0AAh)
 	movwf	(157)^080h	;volatile
 	line	151
 	
-l1487:	
+l1483:	
 ;main.c: 151: EECON1bits.WR = 1;
 	bsf	(156)^080h,1	;volatile
 	line	152
 	
-l1489:	
+l1485:	
 ;main.c: 152: INTCONbits.GIE = 1;
 	bsf	(11),7	;volatile
 	line	154
 	
-l1491:	
+l1487:	
 ;main.c: 154: dataready=0;
 	bcf	status, 5	;RP0=0, select bank0
 	clrf	(_dataready)
-	goto	l1459
+	goto	l1455
 	global	start
 	ljmp	start
 	opt stack 0
@@ -620,7 +620,7 @@ __ptext77:
 
 ;; *************** function _t0intr *****************
 ;; Defined at:
-;;		line 70 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+;;		line 70 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -649,7 +649,7 @@ __ptext77:
 ;; This function uses a non-reentrant model
 ;;
 psect	text77
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	70
 	global	__size_of_t0intr
 	__size_of_t0intr	equ	__end_of_t0intr-_t0intr
@@ -674,7 +674,7 @@ interrupt_function:
 psect	text77
 	line	71
 	
-i1l1325:	
+i1l1321:	
 ;main.c: 71: if(INTCONbits.T0IF)
 	btfss	(11),2	;volatile
 	goto	u20_21
@@ -684,13 +684,13 @@ u20_21:
 u20_20:
 	line	73
 	
-i1l1327:	
+i1l1323:	
 ;main.c: 72: {
 ;main.c: 73: timerInterruptIsr();
 	fcall	_timerInterruptIsr
 	line	74
 	
-i1l1329:	
+i1l1325:	
 ;main.c: 74: INTCONbits.T0IF =0;
 	bcf	(11),2	;volatile
 	line	75
@@ -708,23 +708,23 @@ u21_21:
 u21_20:
 	line	78
 	
-i1l1331:	
+i1l1327:	
 ;main.c: 77: {
 ;main.c: 78: GPIObits.GPIO5=1;
 	bsf	(5),5	;volatile
 	line	79
 	
-i1l1333:	
+i1l1329:	
 ;main.c: 79: interruptOnChangeIsr();
 	fcall	_interruptOnChangeIsr
 	line	80
 	
-i1l1335:	
+i1l1331:	
 ;main.c: 80: INTCONbits.GPIF =0;
 	bcf	(11),0	;volatile
 	line	81
 	
-i1l1337:	
+i1l1333:	
 ;main.c: 81: GPIObits.GPIO5=0;
 	bcf	(5),5	;volatile
 	line	84
@@ -750,7 +750,7 @@ __ptext78:
 
 ;; *************** function _interruptOnChangeIsr *****************
 ;; Defined at:
-;;		line 163 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+;;		line 163 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -778,7 +778,7 @@ __ptext78:
 ;; This function uses a non-reentrant model
 ;;
 psect	text78
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	163
 	global	__size_of_interruptOnChangeIsr
 	__size_of_interruptOnChangeIsr	equ	__end_of_interruptOnChangeIsr-_interruptOnChangeIsr
@@ -788,7 +788,7 @@ _interruptOnChangeIsr:
 ; Regs used in _interruptOnChangeIsr: [wreg+status,2+status,0]
 	line	170
 	
-i1l1343:	
+i1l1339:	
 ;main.c: 165: unsigned short long tdiff;
 ;main.c: 166: unsigned char pin;
 ;main.c: 167: static unsigned long rxbuffer;
@@ -819,7 +819,7 @@ i1l1343:
 	addwf	(interruptOnChangeIsr@tdiff+2),f
 	line	172
 	
-i1l1345:	
+i1l1341:	
 ;main.c: 172: pin = GPIObits.GPIO3;
 	movlw	0
 	btfsc	(5),3	;volatile
@@ -830,14 +830,14 @@ i1l1345:
 	clrf	(1)	;volatile
 	line	174
 	
-i1l1347:	
+i1l1343:	
 ;main.c: 174: timer = 0;
 	clrf	(_timer)
 	clrf	(_timer+1)
 	clrf	(_timer+2)
 	line	204
 	
-i1l1349:	
+i1l1345:	
 ;main.c: 204: if ((tdiff>PREPULSE) && (tdiff<TIMEOUT) )
 	movf	(_PREPULSE),w
 	movwf	((??_interruptOnChangeIsr+0)+0)
@@ -859,10 +859,10 @@ u23_25:
 	goto	u23_21
 	goto	u23_20
 u23_21:
-	goto	i1l1415
+	goto	i1l1411
 u23_20:
 	
-i1l1351:	
+i1l1347:	
 	movf	(_TIMEOUT),w
 	movwf	((??_interruptOnChangeIsr+0)+0)
 	movf	(_TIMEOUT+1),w
@@ -883,11 +883,11 @@ u24_25:
 	goto	u24_21
 	goto	u24_20
 u24_21:
-	goto	i1l1415
+	goto	i1l1411
 u24_20:
 	line	210
 	
-i1l1353:	
+i1l1349:	
 ;main.c: 205: {
 ;main.c: 210: if(necpoj==1 || necpoj==2)
 	decf	(_necpoj),w
@@ -895,21 +895,21 @@ i1l1353:
 	goto	u25_21
 	goto	u25_20
 u25_21:
-	goto	i1l1357
+	goto	i1l1353
 u25_20:
 	
-i1l1355:	
+i1l1351:	
 	movf	(_necpoj),w
 	xorlw	02h
 	skipz
 	goto	u26_21
 	goto	u26_20
 u26_21:
-	goto	i1l1383
+	goto	i1l1379
 u26_20:
 	line	213
 	
-i1l1357:	
+i1l1353:	
 ;main.c: 211: {
 ;main.c: 213: if((pin==1) && (necpoj==1))
 	decf	(interruptOnChangeIsr@pin),w
@@ -917,26 +917,26 @@ i1l1357:
 	goto	u27_21
 	goto	u27_20
 u27_21:
-	goto	i1l1367
+	goto	i1l1363
 u27_20:
 	
-i1l1359:	
+i1l1355:	
 	decf	(_necpoj),w
 	skipz
 	goto	u28_21
 	goto	u28_20
 u28_21:
-	goto	i1l1367
+	goto	i1l1363
 u28_20:
 	line	215
 	
-i1l1361:	
+i1l1357:	
 ;main.c: 214: {
 ;main.c: 215: necpoj++;
 	incf	(_necpoj),f
 	line	216
 	
-i1l1363:	
+i1l1359:	
 ;main.c: 216: TIMEOUT = 5522;
 	movlw	low(01592h)
 	movwf	(_TIMEOUT)
@@ -944,7 +944,7 @@ i1l1363:
 	movwf	((_TIMEOUT))+1
 	line	217
 	
-i1l1365:	
+i1l1361:	
 ;main.c: 217: PREPULSE = 3012;
 	movlw	low(0BC4h)
 	movwf	(_PREPULSE)
@@ -955,34 +955,34 @@ i1l1365:
 	goto	i1l408
 	line	219
 	
-i1l1367:	
+i1l1363:	
 ;main.c: 219: else if((pin==0)&& (necpoj ==2))
 	movf	(interruptOnChangeIsr@pin),f
 	skipz
 	goto	u29_21
 	goto	u29_20
 u29_21:
-	goto	i1l1377
+	goto	i1l1373
 u29_20:
 	
-i1l1369:	
+i1l1365:	
 	movf	(_necpoj),w
 	xorlw	02h
 	skipz
 	goto	u30_21
 	goto	u30_20
 u30_21:
-	goto	i1l1377
+	goto	i1l1373
 u30_20:
 	line	221
 	
-i1l1371:	
+i1l1367:	
 ;main.c: 220: {
 ;main.c: 221: necpoj++;
 	incf	(_necpoj),f
 	line	223
 	
-i1l1373:	
+i1l1369:	
 ;main.c: 223: TIMEOUT = 2309;
 	movlw	low(0905h)
 	movwf	(_TIMEOUT)
@@ -990,7 +990,7 @@ i1l1373:
 	movwf	((_TIMEOUT))+1
 	line	224
 	
-i1l1375:	
+i1l1371:	
 ;main.c: 224: PREPULSE = 200;
 	movlw	0C8h
 	movwf	(_PREPULSE)
@@ -1000,14 +1000,14 @@ i1l1375:
 	goto	i1l408
 	line	229
 	
-i1l1377:	
+i1l1373:	
 ;main.c: 227: else
 ;main.c: 228: {
 ;main.c: 229: necpoj = 0;
 	clrf	(_necpoj)
 	line	230
 	
-i1l1379:	
+i1l1375:	
 ;main.c: 230: TIMEOUT = 11044;
 	movlw	low(02B24h)
 	movwf	(_TIMEOUT)
@@ -1015,7 +1015,7 @@ i1l1379:
 	movwf	((_TIMEOUT))+1
 	line	231
 	
-i1l1381:	
+i1l1377:	
 ;main.c: 231: PREPULSE = 8032;
 	movlw	low(01F60h)
 	movwf	(_PREPULSE)
@@ -1024,7 +1024,7 @@ i1l1381:
 	goto	i1l408
 	line	234
 	
-i1l1383:	
+i1l1379:	
 ;main.c: 234: else if(necpoj>2)
 	movlw	(03h)
 	subwf	(_necpoj),w
@@ -1032,27 +1032,27 @@ i1l1383:
 	goto	u31_21
 	goto	u31_20
 u31_21:
-	goto	i1l1413
+	goto	i1l1409
 u31_20:
 	line	237
 	
-i1l1385:	
+i1l1381:	
 ;main.c: 235: {
 ;main.c: 237: necpoj++;
 	incf	(_necpoj),f
 	line	239
 	
-i1l1387:	
+i1l1383:	
 ;main.c: 239: if(necpoj&0x01)
 	btfss	(_necpoj),(0)&7
 	goto	u32_21
 	goto	u32_20
 u32_21:
-	goto	i1l1395
+	goto	i1l1391
 u32_20:
 	line	242
 	
-i1l1389:	
+i1l1385:	
 ;main.c: 241: {
 ;main.c: 242: rxbuffer=rxbuffer<<1;
 	clrc
@@ -1062,7 +1062,7 @@ i1l1389:
 	rlf	(interruptOnChangeIsr@rxbuffer+3),f
 	line	243
 	
-i1l1391:	
+i1l1387:	
 ;main.c: 243: if(tdiff>1250)
 	movlw	0
 	subwf	(interruptOnChangeIsr@tdiff+2),w
@@ -1079,18 +1079,18 @@ u33_25:
 	goto	u33_21
 	goto	u33_20
 u33_21:
-	goto	i1l1395
+	goto	i1l1391
 u33_20:
 	line	246
 	
-i1l1393:	
+i1l1389:	
 ;main.c: 245: {
 ;main.c: 246: rxbuffer = rxbuffer | 0x1;
 	bsf	(interruptOnChangeIsr@rxbuffer)+(0/8),(0)&7
 	line	257
 ;main.c: 248: }
 	
-i1l1395:	
+i1l1391:	
 ;main.c: 253: }
 ;main.c: 255: }
 ;main.c: 257: if(necpoj >66)
@@ -1104,7 +1104,7 @@ u34_21:
 u34_20:
 	line	260
 	
-i1l1397:	
+i1l1393:	
 ;main.c: 258: {
 ;main.c: 260: address = (rxbuffer>>24)& 0xFF;
 	movf	0+(((interruptOnChangeIsr@rxbuffer))+3),w
@@ -1123,7 +1123,7 @@ i1l1397:
 	movwf	(_notcommand)
 	line	264
 	
-i1l1399:	
+i1l1395:	
 ;main.c: 264: rxbuffer=0;
 	clrf	(interruptOnChangeIsr@rxbuffer)
 	clrf	(interruptOnChangeIsr@rxbuffer+1)
@@ -1131,7 +1131,7 @@ i1l1399:
 	clrf	(interruptOnChangeIsr@rxbuffer+3)
 	line	266
 	
-i1l1401:	
+i1l1397:	
 ;main.c: 266: if((!(address & notaddress)) && (!(command & notcommand)))
 	movf	(_address),w
 	andwf	(_notaddress),w
@@ -1139,38 +1139,38 @@ i1l1401:
 	goto	u35_21
 	goto	u35_20
 u35_21:
-	goto	i1l1407
+	goto	i1l1403
 u35_20:
 	
-i1l1403:	
+i1l1399:	
 	movf	(_command),w
 	andwf	(_notcommand),w
 	btfss	status,2
 	goto	u36_21
 	goto	u36_20
 u36_21:
-	goto	i1l1407
+	goto	i1l1403
 u36_20:
 	line	268
 	
-i1l1405:	
+i1l1401:	
 ;main.c: 267: {
 ;main.c: 268: dataready =1;
 	clrf	(_dataready)
 	incf	(_dataready),f
 	line	269
 ;main.c: 269: }
-	goto	i1l1409
+	goto	i1l1405
 	line	272
 	
-i1l1407:	
+i1l1403:	
 ;main.c: 270: else
 ;main.c: 271: {
 ;main.c: 272: dataready=0;
 	clrf	(_dataready)
 	line	274
 	
-i1l1409:	
+i1l1405:	
 ;main.c: 273: }
 ;main.c: 274: TIMEOUT = 11044;
 	movlw	low(02B24h)
@@ -1179,7 +1179,7 @@ i1l1409:
 	movwf	((_TIMEOUT))+1
 	line	275
 	
-i1l1411:	
+i1l1407:	
 ;main.c: 275: PREPULSE = 8032;
 	movlw	low(01F60h)
 	movwf	(_PREPULSE)
@@ -1191,7 +1191,7 @@ i1l1411:
 	goto	i1l408
 	line	283
 	
-i1l1413:	
+i1l1409:	
 ;main.c: 280: else
 ;main.c: 281: {
 ;main.c: 283: TIMEOUT = 11044;
@@ -1215,7 +1215,7 @@ i1l396:
 	goto	i1l408
 	line	294
 	
-i1l1415:	
+i1l1411:	
 ;main.c: 291: else
 ;main.c: 292: {
 ;main.c: 294: if(pin==0)
@@ -1224,54 +1224,54 @@ i1l1415:
 	goto	u37_21
 	goto	u37_20
 u37_21:
-	goto	i1l1419
+	goto	i1l1415
 u37_20:
 	line	296
 	
-i1l1417:	
+i1l1413:	
 ;main.c: 295: {
 ;main.c: 296: necpoj = 1;
 	clrf	(_necpoj)
 	incf	(_necpoj),f
 	line	297
 ;main.c: 297: }
-	goto	i1l1421
+	goto	i1l1417
 	line	300
 	
-i1l1419:	
+i1l1415:	
 ;main.c: 298: else
 ;main.c: 299: {
 ;main.c: 300: necpoj = 0;
 	clrf	(_necpoj)
 	line	303
 	
-i1l1421:	
+i1l1417:	
 ;main.c: 301: }
 ;main.c: 303: address = 0xFF;
 	movlw	(0FFh)
 	movwf	(_address)
 	line	304
 	
-i1l1423:	
+i1l1419:	
 ;main.c: 304: notaddress = 0xFF;
 	movlw	(0FFh)
 	movwf	(_notaddress)
 	line	305
 	
-i1l1425:	
+i1l1421:	
 ;main.c: 305: command = 0xFF;
 	movlw	(0FFh)
 	movwf	(_command)
 	line	306
 	
-i1l1427:	
+i1l1423:	
 ;main.c: 306: notcommand = 0xFF;
 	movlw	(0FFh)
 	movwf	(_notcommand)
 	line	307
 ;main.c: 307: dataready = 0x000;
 	clrf	(_dataready)
-	goto	i1l1379
+	goto	i1l1375
 	line	312
 	
 i1l408:	
@@ -1289,7 +1289,7 @@ __ptext79:
 
 ;; *************** function _timerInterruptIsr *****************
 ;; Defined at:
-;;		line 315 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+;;		line 315 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1316,7 +1316,7 @@ __ptext79:
 ;; This function uses a non-reentrant model
 ;;
 psect	text79
-	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\main.c"
+	file	"C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.c"
 	line	315
 	global	__size_of_timerInterruptIsr
 	__size_of_timerInterruptIsr	equ	__end_of_timerInterruptIsr-_timerInterruptIsr
@@ -1326,7 +1326,7 @@ _timerInterruptIsr:
 ; Regs used in _timerInterruptIsr: [wreg+status,2+status,0]
 	line	316
 	
-i1l1339:	
+i1l1335:	
 ;main.c: 316: if(timer<0xFFFF)
 	movlw	0
 	subwf	(_timer+2),w
@@ -1347,7 +1347,7 @@ u22_21:
 u22_20:
 	line	317
 	
-i1l1341:	
+i1l1337:	
 ;main.c: 317: timer++;
 	incf	(_timer),f
 	skipnz
