@@ -1,0 +1,877 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Sun Sep 08 16:08:37 2013
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	12F615
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	text113,local,class=CODE,delta=2
+     6                           	psect	cinit,global,class=CODE,delta=2
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,delta=2
+    10                           	psect	text114,local,class=CODE,delta=2
+    11                           	psect	intentry,global,class=CODE,delta=2
+    12                           	psect	text115,local,class=CODE,delta=2
+    13                           	psect	text116,local,class=CODE,delta=2
+    14                           	psect	text117,local,class=CODE,delta=2
+    15                           	psect	text118,local,class=CODE,delta=2
+    16                           	psect	pa_nodes,global,class=CODE,delta=2
+    17                           	dabs	1,0x7E,2
+    18  000A                     	;#
+    19                           
+    20                           	psect	config
+    21  2007  FED4               	dw	65236	;#
+    22                           
+    23                           	psect	text113
+    24  0000                     __ptext113:	
+    25  0015                     _CCP1CON	set	21
+    26  0015                     _CCP1CONbits	set	21
+    27  0013                     _CCPR1L	set	19
+    28  001A                     _CMCON0bits	set	26
+    29  0005                     _GPIO	set	5
+    30  0005                     _GPIObits	set	5
+    31  000B                     _INTCONbits	set	11
+    32  0012                     _T2CON	set	18
+    33  0011                     _TMR2	set	17
+    34  009F                     _ANSEL	set	159
+    35  0096                     _IOC	set	150
+    36  0081                     _OPTION_REG	set	129
+    37  0092                     _PR2	set	146
+    38  0085                     _TRISIO	set	133
+    39  0095                     _WPU	set	149
+    40                           
+    41                           	psect	cinit
+    42  0107                     start_initialization:	
+    43  0107                     end_of_initialization:	
+    44                           ;End of C runtime variable initialization code
+    45                           
+    46  0107  0183               	clrf	3
+    47  0108  28E9               	ljmp	_main	;jump to C main() function
+    48                           
+    49                           	psect	cstackCOMMON
+    50  0070                     __pcstackCOMMON:	
+    51  0070                     ?_sendRepeate:	
+    52  0070                     ??_sendRepeate:	
+    53                           ; 0 bytes @ 0x0
+    54                           
+    55  0070                     ?_sendByte:	
+    56                           ; 0 bytes @ 0x0
+    57                           
+    58  0070                     ??_sendByte:	
+    59                           ; 0 bytes @ 0x0
+    60                           
+    61  0070                     ?_swInt:	
+    62                           ; 0 bytes @ 0x0
+    63                           
+    64  0070                     ?_main:	
+    65                           ; 0 bytes @ 0x0
+    66                           
+    67                           
+    68                           ; 0 bytes @ 0x0
+    69  0070                     	ds	2
+    70  0072                     sendByte@byte:	
+    71                           
+    72                           ; 1 bytes @ 0x2
+    73  0072                     	ds	1
+    74  0073                     sendByte@i:	
+    75                           
+    76                           ; 1 bytes @ 0x3
+    77  0073                     	ds	1
+    78  0074                     ?_sendFrame:	
+    79  0074                     sendFrame@command:	
+    80                           ; 0 bytes @ 0x4
+    81                           
+    82                           
+    83                           ; 1 bytes @ 0x4
+    84  0074                     	ds	1
+    85  0075                     ??_sendFrame:	
+    86                           
+    87                           ; 0 bytes @ 0x5
+    88  0075                     	ds	2
+    89  0077                     sendFrame@address:	
+    90                           
+    91                           ; 1 bytes @ 0x7
+    92  0077                     	ds	1
+    93  0078                     ??_swInt:	
+    94                           
+    95                           ; 0 bytes @ 0x8
+    96  0078                     	ds	6
+    97                           
+    98                           	psect	cstackBANK0
+    99  0000                     __pcstackBANK0:	
+   100  0000                     ??_main:	
+   101                           
+   102                           	psect	maintext
+   103  00E9                     __pmaintext:	
+   104                           ; 0 bytes @ 0x0
+   105 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 0 stack 0
+   106 ;;Auto spaces:   Size  Autos    Used
+   107 ;; COMMON          14     14      14
+   108 ;; BANK0           48      0       0
+   109 ;;
+   110 ;; Pointer list with targets:
+   111 ;;
+   112 ;; Critical Paths under _main in COMMON
+   113 ;;
+   114 ;;   None.
+   115 ;;
+   116 ;; Critical Paths under _swInt in COMMON
+   117 ;;
+   118 ;;   _swInt->_sendFrame
+   119 ;;   _sendFrame->_sendByte
+   120 ;;
+   121 ;; Critical Paths under _main in BANK0
+   122 ;;
+   123 ;;   None.
+   124 ;;
+   125 ;; Critical Paths under _swInt in BANK0
+   126 ;;
+   127 ;;   None.
+   128 ;;
+   129 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   130 ;;
+   131 ;;
+   132 ;;Call Graph Tables:
+   133 ;;
+   134 ;; ---------------------------------------------------------------------------------
+   135 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   136 ;; ---------------------------------------------------------------------------------
+   137 ;; (0) _main                                                 0     0      0       0
+   138 ;; ---------------------------------------------------------------------------------
+   139 ;; Estimated maximum stack depth 0
+   140 ;; ---------------------------------------------------------------------------------
+   141 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   142 ;; ---------------------------------------------------------------------------------
+   143 ;; (1) _swInt                                                6     6      0     105
+   144 ;;                                              8 COMMON     6     6      0
+   145 ;;                          _sendFrame
+   146 ;;                        _sendRepeate
+   147 ;; ---------------------------------------------------------------------------------
+   148 ;; (2) _sendFrame                                            4     3      1     105
+   149 ;;                                              4 COMMON     4     3      1
+   150 ;;                           _sendByte
+   151 ;; ---------------------------------------------------------------------------------
+   152 ;; (3) _sendByte                                             4     4      0      45
+   153 ;;                                              0 COMMON     4     4      0
+   154 ;; ---------------------------------------------------------------------------------
+   155 ;; (2) _sendRepeate                                          2     2      0       0
+   156 ;;                                              0 COMMON     2     2      0
+   157 ;; ---------------------------------------------------------------------------------
+   158 ;; Estimated maximum stack depth 3
+   159 ;; ---------------------------------------------------------------------------------
+   160 ;; Call Graph Graphs:
+   161 ;; _main (ROOT)
+   162 ;;
+   163 ;; _swInt (ROOT)
+   164 ;;   _sendFrame
+   165 ;;     _sendByte
+   166 ;;   _sendRepeate
+   167 ;;
+   168 ;; Address spaces:
+   169 ;;Name               Size   Autos  Total    Cost      Usage
+   170 ;;BITCOMMON            E      0       0       0        0.0%
+   171 ;;NULL                 0      0       0       0        0.0%
+   172 ;;CODE                 0      0       0       0        0.0%
+   173 ;;COMMON               E      E       E       1      100.0%
+   174 ;;BITSFR0              0      0       0       1        0.0%
+   175 ;;SFR0                 0      0       0       1        0.0%
+   176 ;;BITSFR1              0      0       0       2        0.0%
+   177 ;;SFR1                 0      0       0       2        0.0%
+   178 ;;STACK                0      0       6       2        0.0%
+   179 ;;BITBANK0            30      0       0       3        0.0%
+   180 ;;BANK0               30      0       0       4        0.0%
+   181 ;;ABS                  0      0       0       5        0.0%
+   182 ;;DATA                 0      0       0       6        0.0%
+   183                           
+   184                           
+   185 ;; *************** function _main *****************
+   186 ;; Defined at:
+   187 ;;		line 91 in file "J:\new work\MPLAB\New folder\main.c"
+   188 ;; Parameters:    Size  Location     Type
+   189 ;;		None
+   190 ;; Auto vars:     Size  Location     Type
+   191 ;;		None
+   192 ;; Return value:  Size  Location     Type
+   193 ;;		None               void
+   194 ;; Registers used:
+   195 ;;		wreg, status,2
+   196 ;; Tracked objects:
+   197 ;;		On entry : 17F/0
+   198 ;;		On exit  : 0/0
+   199 ;;		Unchanged: FFE00/0
+   200 ;; Data sizes:     COMMON   BANK0
+   201 ;;      Params:         0       0
+   202 ;;      Locals:         0       0
+   203 ;;      Temps:          0       0
+   204 ;;      Totals:         0       0
+   205 ;;Total ram usage:        0 bytes
+   206 ;; Hardware stack levels required when called:    3
+   207 ;; This function calls:
+   208 ;;		Nothing
+   209 ;; This function is called by:
+   210 ;;		Startup code after reset
+   211 ;; This function uses a non-reentrant model
+   212 ;;
+   213  00E9                     _main:	
+   214                           
+   215                           ;main.c: 92: CMCON0bits.CMON =0;
+   216                           
+   217                           ; Regs used in _main: [wreg+status,2]
+   218  00E9  139A               	bcf	26,7	;volatile
+   219                           
+   220                           ;main.c: 93: ANSEL = 0x00;
+   221  00EA  1683               	bsf	3,5	;RP0=1, select bank1
+   222  00EB  019F               	clrf	31	;volatile
+   223                           
+   224                           ;main.c: 94: TRISIO = 0x3B;
+   225  00EC  303B               	movlw	59
+   226  00ED  0085               	movwf	5	;volatile
+   227                           
+   228                           ;main.c: 95: OPTION_REG = 0x5F;
+   229  00EE  305F               	movlw	95
+   230  00EF  0081               	movwf	1	;volatile
+   231                           
+   232                           ;main.c: 99: WPU = 0x3B;
+   233  00F0  303B               	movlw	59
+   234  00F1  0095               	movwf	21	;volatile
+   235                           
+   236                           ;main.c: 100: GPIO = 0x3B;
+   237  00F2  1283               	bcf	3,5	;RP0=0, select bank0
+   238  00F3  0085               	movwf	5	;volatile
+   239                           
+   240                           ;main.c: 101: T2CON = 0x04;
+   241  00F4  3004               	movlw	4
+   242  00F5  0092               	movwf	18	;volatile
+   243                           
+   244                           ;main.c: 105: CCPR1L = 0x1A;
+   245  00F6  301A               	movlw	26
+   246  00F7  0093               	movwf	19	;volatile
+   247                           
+   248                           ;main.c: 106: PR2 = 51;
+   249  00F8  3033               	movlw	51
+   250  00F9  1683               	bsf	3,5	;RP0=1, select bank1
+   251  00FA  0092               	movwf	18	;volatile
+   252                           
+   253                           ;main.c: 107: CCP1CON = 0x20;
+   254  00FB  3020               	movlw	32
+   255  00FC  1283               	bcf	3,5	;RP0=0, select bank0
+   256  00FD  0095               	movwf	21	;volatile
+   257                           
+   258                           ;main.c: 108: IOC = 0x3B;
+   259  00FE  303B               	movlw	59
+   260  00FF  1683               	bsf	3,5	;RP0=1, select bank1
+   261  0100  0096               	movwf	22	;volatile
+   262                           
+   263                           ;main.c: 109: INTCONbits.GPIE = 1;
+   264  0101  158B               	bsf	11,3	;volatile
+   265                           
+   266                           ;main.c: 110: INTCONbits.GPIF = 0;
+   267  0102  100B               	bcf	11,0	;volatile
+   268                           
+   269                           ;main.c: 111: INTCONbits.PEIE = 1;
+   270  0103  170B               	bsf	11,6	;volatile
+   271                           
+   272                           ;main.c: 112: INTCONbits.GIE = 1;
+   273  0104  178B               	bsf	11,7	;volatile
+   274  0105                     l1096:	
+   275  0105  0063               	sleep	;#
+   276  0106  2905               	goto	l1096
+   277  0107                     __end_of_main:	
+   278                           
+   279                           	psect	text114
+   280  0010                     __ptext114:	
+   281 ;; =============== function _main ends ============
+   282                           
+   283                           
+   284 ;; *************** function _swInt *****************
+   285 ;; Defined at:
+   286 ;;		line 42 in file "J:\new work\MPLAB\New folder\main.c"
+   287 ;; Parameters:    Size  Location     Type
+   288 ;;		None
+   289 ;; Auto vars:     Size  Location     Type
+   290 ;;		None
+   291 ;; Return value:  Size  Location     Type
+   292 ;;		None               void
+   293 ;; Registers used:
+   294 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, btemp+1, pclath, cstack
+   295 ;; Tracked objects:
+   296 ;;		On entry : 0/0
+   297 ;;		On exit  : 20/0
+   298 ;;		Unchanged: 0/0
+   299 ;; Data sizes:     COMMON   BANK0
+   300 ;;      Params:         0       0
+   301 ;;      Locals:         0       0
+   302 ;;      Temps:          6       0
+   303 ;;      Totals:         6       0
+   304 ;;Total ram usage:        6 bytes
+   305 ;; Hardware stack levels used:    1
+   306 ;; Hardware stack levels required when called:    2
+   307 ;; This function calls:
+   308 ;;		_sendFrame
+   309 ;;		_sendRepeate
+   310 ;; This function is called by:
+   311 ;;		Interrupt level 1
+   312 ;; This function uses a non-reentrant model
+   313 ;;
+   314  0010                     _swInt:	
+   315                           
+   316                           ;main.c: 44: if (INTCONbits.GPIF)
+   317  0010  1C0B               	btfss	11,0	;volatile
+   318  0011  2855               	goto	i1l536
+   319                           
+   320                           ;main.c: 45: {
+   321                           ;main.c: 46: _delay((unsigned long)((2)*(8000000/4000.0)));
+   322  0012  3006               	movlw	6
+   323  0013  00F9               	movwf	??_swInt+1
+   324  0014  3030               	movlw	48
+   325  0015  00F8               	movwf	??_swInt
+   326  0016                     u14_27:	
+   327  0016  0BF8               	decfsz	??_swInt,f
+   328  0017  2816               	goto	u14_27
+   329  0018  0BF9               	decfsz	??_swInt+1,f
+   330  0019  2816               	goto	u14_27
+   331  001A  0064               	clrwdt
+   332                           
+   333                           ;main.c: 48: if(!GPIObits.GPIO0)
+   334  001B  1283               	bcf	3,5	;RP0=0, select bank0
+   335  001C  1805               	btfsc	5,0	;volatile
+   336  001D  2827               	goto	i1l512
+   337                           
+   338                           ;main.c: 49: {
+   339                           ;main.c: 50: sendFrame(0x01,0xF8);
+   340  001E  30F8               	movlw	248
+   341  001F  00F4               	movwf	?_sendFrame
+   342  0020  3001               	movlw	1
+   343  0021  2060               	fcall	_sendFrame
+   344  0022                     i1l934:	
+   345                           ;main.c: 51: while(!GPIObits.GPIO0)
+   346                           
+   347  0022  1283               	bcf	3,5	;RP0=0, select bank0
+   348  0023  1805               	btfsc	5,0	;volatile
+   349  0024  2853               	goto	i1l960
+   350                           
+   351                           ;main.c: 52: {
+   352                           ;main.c: 53: sendRepeate();
+   353  0025  2094               	fcall	_sendRepeate
+   354  0026  2822               	goto	i1l934
+   355  0027                     i1l512:	
+   356  0027  1885               	btfsc	5,1	;volatile
+   357  0028  2832               	goto	i1l517
+   358                           
+   359                           ;main.c: 56: {
+   360                           ;main.c: 57: sendFrame(0x01,0x50);
+   361  0029  3050               	movlw	80
+   362  002A  00F4               	movwf	?_sendFrame
+   363  002B  3001               	movlw	1
+   364  002C  2060               	fcall	_sendFrame
+   365  002D                     i1l940:	
+   366                           ;main.c: 58: while(!GPIObits.GPIO1)
+   367                           
+   368  002D  1283               	bcf	3,5	;RP0=0, select bank0
+   369  002E  1885               	btfsc	5,1	;volatile
+   370  002F  2853               	goto	i1l960
+   371                           
+   372                           ;main.c: 59: {
+   373                           ;main.c: 60: sendRepeate();
+   374  0030  2094               	fcall	_sendRepeate
+   375  0031  282D               	goto	i1l940
+   376  0032                     i1l517:	
+   377  0032  1985               	btfsc	5,3	;volatile
+   378  0033  283D               	goto	i1l522
+   379                           
+   380                           ;main.c: 63: {
+   381                           ;main.c: 64: sendFrame(0x01,0xD8);
+   382  0034  30D8               	movlw	216
+   383  0035  00F4               	movwf	?_sendFrame
+   384  0036  3001               	movlw	1
+   385  0037  2060               	fcall	_sendFrame
+   386  0038                     i1l946:	
+   387                           ;main.c: 65: while(!GPIObits.GPIO3)
+   388                           
+   389  0038  1283               	bcf	3,5	;RP0=0, select bank0
+   390  0039  1985               	btfsc	5,3	;volatile
+   391  003A  2853               	goto	i1l960
+   392                           
+   393                           ;main.c: 66: {
+   394                           ;main.c: 67: sendRepeate();
+   395  003B  2094               	fcall	_sendRepeate
+   396  003C  2838               	goto	i1l946
+   397  003D                     i1l522:	
+   398  003D  1A05               	btfsc	5,4	;volatile
+   399  003E  2848               	goto	i1l527
+   400                           
+   401                           ;main.c: 70: {
+   402                           ;main.c: 71: sendFrame(0x01,0xB0);
+   403  003F  30B0               	movlw	176
+   404  0040  00F4               	movwf	?_sendFrame
+   405  0041  3001               	movlw	1
+   406  0042  2060               	fcall	_sendFrame
+   407  0043                     i1l952:	
+   408                           ;main.c: 72: while(!GPIObits.GPIO4)
+   409                           
+   410  0043  1283               	bcf	3,5	;RP0=0, select bank0
+   411  0044  1A05               	btfsc	5,4	;volatile
+   412  0045  2853               	goto	i1l960
+   413                           
+   414                           ;main.c: 73: {
+   415                           ;main.c: 74: sendRepeate();
+   416  0046  2094               	fcall	_sendRepeate
+   417  0047  2843               	goto	i1l952
+   418  0048                     i1l527:	
+   419  0048  1A85               	btfsc	5,5	;volatile
+   420  0049  2853               	goto	i1l960
+   421                           
+   422                           ;main.c: 77: {
+   423                           ;main.c: 78: sendFrame(0x01,0x30);
+   424  004A  3030               	movlw	48
+   425  004B  00F4               	movwf	?_sendFrame
+   426  004C  3001               	movlw	1
+   427  004D  2060               	fcall	_sendFrame
+   428  004E                     i1l958:	
+   429                           ;main.c: 79: while(!GPIObits.GPIO5)
+   430                           
+   431  004E  1283               	bcf	3,5	;RP0=0, select bank0
+   432  004F  1A85               	btfsc	5,5	;volatile
+   433  0050  2853               	goto	i1l960
+   434                           
+   435                           ;main.c: 80: {
+   436                           ;main.c: 81: sendRepeate();
+   437  0051  2094               	fcall	_sendRepeate
+   438  0052  284E               	goto	i1l958
+   439  0053                     i1l960:	
+   440                           
+   441                           ;main.c: 82: }
+   442                           ;main.c: 83: }
+   443                           ;main.c: 84: GPIObits.GPIO0;
+   444  0053  0805               	movf	5,w	;volatile
+   445                           
+   446                           ;main.c: 85: INTCONbits.GPIF =0;
+   447  0054  100B               	bcf	11,0	;volatile
+   448  0055                     i1l536:	
+   449  0055  087D               	movf	??_swInt+5,w
+   450  0056  00FF               	movwf	127
+   451  0057  087C               	movf	??_swInt+4,w
+   452  0058  008A               	movwf	10
+   453  0059  087B               	movf	??_swInt+3,w
+   454  005A  0084               	movwf	4
+   455  005B  0E7A               	swapf	(??_swInt+2)^(0+-128),w
+   456  005C  0083               	movwf	3
+   457  005D  0EFE               	swapf	126,f
+   458  005E  0E7E               	swapf	126,w
+   459  005F  0009               	retfie
+   460  0060                     __end_of_swInt:	
+   461                           
+   462                           	psect	intentry
+   463  0004                     __pintentry:	
+   464                           ; Regs used in _swInt: [allreg]
+   465                           
+   466  0004                     interrupt_function:	
+   467  007E                     saved_w	set	btemp
+   468  0004  00FE               	movwf	btemp
+   469  0005  0E03               	swapf	3,w
+   470  0006  00FA               	movwf	??_swInt+2
+   471  0007  0804               	movf	4,w
+   472  0008  00FB               	movwf	??_swInt+3
+   473  0009  080A               	movf	10,w
+   474  000A  00FC               	movwf	??_swInt+4
+   475  000B  1283               	bcf	3,5	;RP0=0, select bank0
+   476  000C  087F               	movf	btemp+1,w
+   477  000D  00FD               	movwf	??_swInt+5
+   478  000E  2810               	ljmp	_swInt
+   479                           
+   480                           	psect	text115
+   481  0060                     __ptext115:	
+   482 ;; =============== function _swInt ends ============
+   483                           
+   484                           
+   485 ;; *************** function _sendFrame *****************
+   486 ;; Defined at:
+   487 ;;		line 121 in file "J:\new work\MPLAB\New folder\main.c"
+   488 ;; Parameters:    Size  Location     Type
+   489 ;;  address         1    wreg     unsigned char 
+   490 ;;  command         1    4[COMMON] unsigned char 
+   491 ;; Auto vars:     Size  Location     Type
+   492 ;;  address         1    7[COMMON] unsigned char 
+   493 ;; Return value:  Size  Location     Type
+   494 ;;		None               void
+   495 ;; Registers used:
+   496 ;;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, btemp+1, pclath, cstack
+   497 ;; Tracked objects:
+   498 ;;		On entry : 20/0
+   499 ;;		On exit  : 0/0
+   500 ;;		Unchanged: 0/0
+   501 ;; Data sizes:     COMMON   BANK0
+   502 ;;      Params:         1       0
+   503 ;;      Locals:         1       0
+   504 ;;      Temps:          2       0
+   505 ;;      Totals:         4       0
+   506 ;;Total ram usage:        4 bytes
+   507 ;; Hardware stack levels used:    1
+   508 ;; Hardware stack levels required when called:    1
+   509 ;; This function calls:
+   510 ;;		_sendByte
+   511 ;; This function is called by:
+   512 ;;		_swInt
+   513 ;; This function uses a non-reentrant model
+   514 ;;
+   515  0060                     _sendFrame:	
+   516                           
+   517                           ; Regs used in _sendFrame: [allreg]
+   518                           ;sendFrame@address stored from wreg
+   519  0060  00F7               	movwf	sendFrame@address
+   520                           
+   521                           ;main.c: 122: TMR2 = 0x00;
+   522                           
+   523                           ;main.c: 123: CCP1CONbits.CCP1M = 0xC;
+   524  0061  20BE               	fcall	PL2	;call to abstracted procedure
+   525                           
+   526                           ;main.c: 124: _delay((unsigned long)((8999)*(8000000/4000000.0)));
+   527  0062  3018               	movlw	24
+   528  0063  00F6               	movwf	??_sendFrame+1
+   529  0064  305E               	movlw	94
+   530  0065  00F5               	movwf	??_sendFrame
+   531  0066                     u15_27:	
+   532  0066  0BF5               	decfsz	??_sendFrame,f
+   533  0067  2866               	goto	u15_27
+   534  0068  0BF6               	decfsz	??_sendFrame+1,f
+   535  0069  2866               	goto	u15_27
+   536  006A  0064               	clrwdt
+   537                           
+   538                           ;main.c: 125: CCP1CONbits.CCP1M = 0x0;
+   539  006B  30F0               	movlw	-16
+   540  006C  1283               	bcf	3,5	;RP0=0, select bank0
+   541  006D  0595               	andwf	21,f	;volatile
+   542                           
+   543                           ;main.c: 126: _delay((unsigned long)((4490)*(8000000/4000000.0)));
+   544  006E  300C               	movlw	12
+   545  006F  00F6               	movwf	??_sendFrame+1
+   546  0070  30A8               	movlw	168
+   547  0071  00F5               	movwf	??_sendFrame
+   548  0072                     u16_27:	
+   549  0072  0BF5               	decfsz	??_sendFrame,f
+   550  0073  2872               	goto	u16_27
+   551  0074  0BF6               	decfsz	??_sendFrame+1,f
+   552  0075  2872               	goto	u16_27
+   553  0076  0064               	clrwdt
+   554                           
+   555                           ;main.c: 128: sendByte(address);
+   556  0077  0877               	movf	sendFrame@address,w
+   557  0078  20C4               	fcall	_sendByte
+   558                           
+   559                           ;main.c: 129: sendByte(~address);
+   560  0079  0977               	comf	sendFrame@address,w
+   561  007A  20C4               	fcall	_sendByte
+   562                           
+   563                           ;main.c: 130: sendByte(command);
+   564  007B  0874               	movf	sendFrame@command,w
+   565  007C  20C4               	fcall	_sendByte
+   566                           
+   567                           ;main.c: 131: sendByte(~command);
+   568  007D  0974               	comf	sendFrame@command,w
+   569  007E  20C4               	fcall	_sendByte
+   570                           
+   571                           ;main.c: 134: TMR2 = 0x00;
+   572  007F  1283               	bcf	3,5	;RP0=0, select bank0
+   573                           
+   574                           ;main.c: 135: CCP1CONbits.CCP1M = 0xC;
+   575  0080  20BE               	fcall	PL2	;call to abstracted procedure
+   576                           
+   577                           ;main.c: 136: _delay((unsigned long)((561)*(8000000/4000000.0)));
+   578  0081  30E0               	movlw	224
+   579  0082  00F5               	movwf	??_sendFrame
+   580  0083                     u17_27:	
+   581  0083  2884               	nop2
+   582  0084  0BF5               	decfsz	??_sendFrame,f
+   583  0085  2883               	goto	u17_27
+   584  0086  0064               	clrwdt
+   585                           
+   586                           ;main.c: 137: CCP1CONbits.CCP1M = 0x0;
+   587  0087  30F0               	movlw	-16
+   588  0088  1283               	bcf	3,5	;RP0=0, select bank0
+   589  0089  0595               	andwf	21,f	;volatile
+   590                           
+   591                           ;main.c: 138: _delay((unsigned long)((40)*(8000000/4000.0)));
+   592  008A  3068               	movlw	104
+   593  008B  00F6               	movwf	??_sendFrame+1
+   594  008C  30E4               	movlw	228
+   595  008D  00F5               	movwf	??_sendFrame
+   596  008E                     u18_27:	
+   597  008E  0BF5               	decfsz	??_sendFrame,f
+   598  008F  288E               	goto	u18_27
+   599  0090  0BF6               	decfsz	??_sendFrame+1,f
+   600  0091  288E               	goto	u18_27
+   601  0092  0064               	clrwdt
+   602  0093  0008               	return
+   603  0094                     __end_of_sendFrame:	
+   604                           
+   605                           	psect	text116
+   606  00C4                     __ptext116:	
+   607 ;; =============== function _sendFrame ends ============
+   608                           
+   609                           
+   610 ;; *************** function _sendByte *****************
+   611 ;; Defined at:
+   612 ;;		line 142 in file "J:\new work\MPLAB\New folder\main.c"
+   613 ;; Parameters:    Size  Location     Type
+   614 ;;  byte            1    wreg     unsigned char 
+   615 ;; Auto vars:     Size  Location     Type
+   616 ;;  byte            1    2[COMMON] unsigned char 
+   617 ;;  i               1    3[COMMON] unsigned char 
+   618 ;; Return value:  Size  Location     Type
+   619 ;;		None               void
+   620 ;; Registers used:
+   621 ;;		wreg, status,2, status,0
+   622 ;; Tracked objects:
+   623 ;;		On entry : 0/0
+   624 ;;		On exit  : 0/0
+   625 ;;		Unchanged: 0/0
+   626 ;; Data sizes:     COMMON   BANK0
+   627 ;;      Params:         0       0
+   628 ;;      Locals:         2       0
+   629 ;;      Temps:          2       0
+   630 ;;      Totals:         4       0
+   631 ;;Total ram usage:        4 bytes
+   632 ;; Hardware stack levels used:    1
+   633 ;; This function calls:
+   634 ;;		Nothing
+   635 ;; This function is called by:
+   636 ;;		_sendFrame
+   637 ;; This function uses a non-reentrant model
+   638 ;;
+   639  00C4                     _sendByte:	
+   640                           
+   641                           ; Regs used in _sendByte: [wreg+status,2+status,0]
+   642                           ;sendByte@byte stored from wreg
+   643  00C4  00F2               	movwf	sendByte@byte
+   644                           
+   645                           ;main.c: 143: unsigned char i;
+   646                           ;main.c: 144: for(i=8 ;i>0;i--)
+   647  00C5  3008               	movlw	8
+   648  00C6  00F3               	movwf	sendByte@i
+   649  00C7                     i1l1046:	
+   650                           
+   651                           ;main.c: 145: {
+   652                           ;main.c: 146: TMR2 = 0x00;
+   653  00C7  1283               	bcf	3,5	;RP0=0, select bank0
+   654                           
+   655                           ;main.c: 147: CCP1CONbits.CCP1M=0xC;
+   656  00C8  20BE               	fcall	PL2	;call to abstracted procedure
+   657                           
+   658                           ;main.c: 148: _delay((unsigned long)((561)*(8000000/4000000.0)));
+   659  00C9  30E0               	movlw	224
+   660  00CA  00F0               	movwf	??_sendByte
+   661  00CB                     u19_27:	
+   662  00CB  28CC               	nop2
+   663  00CC  0BF0               	decfsz	??_sendByte,f
+   664  00CD  28CB               	goto	u19_27
+   665  00CE  0064               	clrwdt
+   666                           
+   667                           ;main.c: 149: CCP1CONbits.CCP1M=0x0;
+   668  00CF  30F0               	movlw	-16
+   669  00D0  1283               	bcf	3,5	;RP0=0, select bank0
+   670  00D1  0595               	andwf	21,f	;volatile
+   671                           
+   672                           ;main.c: 151: if(byte & 0x80)
+   673  00D2  1FF2               	btfss	sendByte@byte,7
+   674  00D3  28DE               	goto	i1l1058
+   675                           
+   676                           ;main.c: 152: {
+   677                           ;main.c: 153: _delay((unsigned long)((1686)*(8000000/4000000.0)));
+   678  00D4  3005               	movlw	5
+   679  00D5  00F1               	movwf	??_sendByte+1
+   680  00D6  305F               	movlw	95
+   681  00D7  00F0               	movwf	??_sendByte
+   682  00D8                     u20_27:	
+   683  00D8  0BF0               	decfsz	??_sendByte,f
+   684  00D9  28D8               	goto	u20_27
+   685  00DA  0BF1               	decfsz	??_sendByte+1,f
+   686  00DB  28D8               	goto	u20_27
+   687  00DC  28DD               	nop2
+   688                           
+   689                           ;main.c: 154: }
+   690  00DD  28E3               	goto	i1l1060
+   691  00DE                     i1l1058:	
+   692                           
+   693                           ;main.c: 155: else
+   694                           ;main.c: 156: {
+   695                           ;main.c: 157: _delay((unsigned long)((558)*(8000000/4000000.0)));
+   696  00DE  30DF               	movlw	223
+   697  00DF  00F0               	movwf	??_sendByte
+   698  00E0                     u21_27:	
+   699  00E0  28E1               	nop2
+   700  00E1  0BF0               	decfsz	??_sendByte,f
+   701  00E2  28E0               	goto	u21_27
+   702  00E3                     i1l1060:	
+   703                           
+   704                           ;main.c: 158: }
+   705                           ;main.c: 159: byte = byte <<1;
+   706  00E3  1003               	clrc
+   707  00E4  0DF2               	rlf	sendByte@byte,f
+   708  00E5  03F3               	decf	sendByte@i,f
+   709  00E6  1903               	btfsc	3,2
+   710  00E7  0008               	return
+   711  00E8  28C7               	goto	i1l1046
+   712  00E9                     __end_of_sendByte:	
+   713                           
+   714                           	psect	text117
+   715  0094                     __ptext117:	
+   716 ;; =============== function _sendByte ends ============
+   717                           
+   718                           
+   719 ;; *************** function _sendRepeate *****************
+   720 ;; Defined at:
+   721 ;;		line 164 in file "J:\new work\MPLAB\New folder\main.c"
+   722 ;; Parameters:    Size  Location     Type
+   723 ;;		None
+   724 ;; Auto vars:     Size  Location     Type
+   725 ;;		None
+   726 ;; Return value:  Size  Location     Type
+   727 ;;		None               void
+   728 ;; Registers used:
+   729 ;;		wreg, status,2, status,0
+   730 ;; Tracked objects:
+   731 ;;		On entry : 20/0
+   732 ;;		On exit  : 0/0
+   733 ;;		Unchanged: 0/0
+   734 ;; Data sizes:     COMMON   BANK0
+   735 ;;      Params:         0       0
+   736 ;;      Locals:         0       0
+   737 ;;      Temps:          2       0
+   738 ;;      Totals:         2       0
+   739 ;;Total ram usage:        2 bytes
+   740 ;; Hardware stack levels used:    1
+   741 ;; This function calls:
+   742 ;;		Nothing
+   743 ;; This function is called by:
+   744 ;;		_swInt
+   745 ;; This function uses a non-reentrant model
+   746 ;;
+   747  0094                     _sendRepeate:	
+   748                           
+   749                           ;main.c: 165: TMR2 = 0x00;
+   750                           
+   751                           ; Regs used in _sendRepeate: [wreg+status,2+status,0]
+   752                           
+   753                           ;main.c: 166: CCP1CONbits.CCP1M = 0xC;
+   754  0094  20BE               	fcall	PL2	;call to abstracted procedure
+   755                           
+   756                           ;main.c: 167: _delay((unsigned long)((8999)*(8000000/4000000.0)));
+   757  0095  3018               	movlw	24
+   758  0096  00F1               	movwf	??_sendRepeate+1
+   759  0097  305E               	movlw	94
+   760  0098  00F0               	movwf	??_sendRepeate
+   761  0099                     u22_27:	
+   762  0099  0BF0               	decfsz	??_sendRepeate,f
+   763  009A  2899               	goto	u22_27
+   764  009B  0BF1               	decfsz	??_sendRepeate+1,f
+   765  009C  2899               	goto	u22_27
+   766  009D  0064               	clrwdt
+   767                           
+   768                           ;main.c: 168: CCP1CONbits.CCP1M = 0x0;
+   769  009E  30F0               	movlw	-16
+   770  009F  1283               	bcf	3,5	;RP0=0, select bank0
+   771  00A0  0595               	andwf	21,f	;volatile
+   772                           
+   773                           ;main.c: 169: _delay((unsigned long)((2245)*(8000000/4000000.0)));
+   774  00A1  3006               	movlw	6
+   775  00A2  00F1               	movwf	??_sendRepeate+1
+   776  00A3  30D3               	movlw	211
+   777  00A4  00F0               	movwf	??_sendRepeate
+   778  00A5                     u23_27:	
+   779  00A5  0BF0               	decfsz	??_sendRepeate,f
+   780  00A6  28A5               	goto	u23_27
+   781  00A7  0BF1               	decfsz	??_sendRepeate+1,f
+   782  00A8  28A5               	goto	u23_27
+   783  00A9  28AA               	nop2
+   784                           
+   785                           ;main.c: 171: TMR2 = 0x00;
+   786  00AA  1283               	bcf	3,5	;RP0=0, select bank0
+   787                           
+   788                           ;main.c: 172: CCP1CONbits.CCP1M = 0xC;
+   789  00AB  20BE               	fcall	PL2	;call to abstracted procedure
+   790                           
+   791                           ;main.c: 173: _delay((unsigned long)((556)*(8000000/4000000.0)));
+   792  00AC  30DE               	movlw	222
+   793  00AD  00F0               	movwf	??_sendRepeate
+   794  00AE                     u24_27:	
+   795  00AE  28AF               	nop2
+   796  00AF  0BF0               	decfsz	??_sendRepeate,f
+   797  00B0  28AE               	goto	u24_27
+   798  00B1  0064               	clrwdt
+   799                           
+   800                           ;main.c: 174: CCP1CONbits.CCP1M = 0x0;
+   801  00B2  30F0               	movlw	-16
+   802  00B3  1283               	bcf	3,5	;RP0=0, select bank0
+   803  00B4  0595               	andwf	21,f	;volatile
+   804                           
+   805                           ;main.c: 175: _delay((unsigned long)((96187)*(8000000/4000000.0)));
+   806  00B5  30FA               	movlw	250
+   807  00B6  00F1               	movwf	??_sendRepeate+1
+   808  00B7  30D5               	movlw	213
+   809  00B8  00F0               	movwf	??_sendRepeate
+   810  00B9                     u25_27:	
+   811  00B9  0BF0               	decfsz	??_sendRepeate,f
+   812  00BA  28B9               	goto	u25_27
+   813  00BB  0BF1               	decfsz	??_sendRepeate+1,f
+   814  00BC  28B9               	goto	u25_27
+   815  00BD  0008               	return
+   816  00BE                     __end_of_sendRepeate:	
+   817  00BE                     PL2:	
+   818  00BE  0191               	clrf	17	;volatile
+   819  00BF  0815               	movf	21,w	;volatile
+   820  00C0  39F0               	andlw	-16
+   821  00C1  380C               	iorlw	12
+   822  00C2  0095               	movwf	21	;volatile
+   823  00C3  0008               	return
+   824                           
+   825                           	psect	text118
+   826  0000                     __ptext118:	
+   827 ;; =============== function _sendRepeate ends ============
+   828                           
+   829  007E                     btemp	set	126	;btemp
+   830  007E                     wtemp0	set	126
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Sun Sep 08 16:08:37 2013
+
+                 _IOC 0096                   _PR2 0092                   _WPU 0095                   fsr0 0004  
+                l1070 0000                  l1080 0000                  l1072 0000                  l1090 0000  
+                l1082 0000                  l1074 0000                  l1066 0000                  l1092 0000  
+                l1084 0000                  l1076 0000                  l1068 0000                  l1094 0000  
+                l1086 0000                  l1078 0000                  l1096 0105                  l1088 0000  
+                _GPIO 0005                  _TMR2 0011                  _main 00E9                  btemp 007E  
+                start 000F                 ?_main 0070                 _ANSEL 009F                 _T2CON 0012  
+               i1l512 0027                 i1l522 003D                 i1l517 0032                 i1l527 0048  
+               i1l552 0000                 i1l536 0055                 i1l545 0000                 i1l555 0000  
+               i1l940 002D                 i1l924 0000                 i1l934 0022                 i1l952 0043  
+               i1l960 0053                 i1l928 0000                 i1l970 0000                 i1l962 0000  
+               i1l946 0038                 i1l980 0000                 i1l972 0000                 i1l964 0000  
+               i1l990 0000                 i1l982 0000                 i1l974 0000                 i1l966 0000  
+               i1l958 004E                 i1l992 0000                 i1l984 0000                 i1l976 0000  
+               i1l968 0000                 i1l994 0000                 i1l986 0000                 i1l978 0000  
+               i1l996 0000                 i1l988 0000                 i1l998 0000                 u20_27 00D8  
+               u21_27 00E0                 u22_27 0099                 u14_27 0016                 u23_27 00A5  
+               u15_27 0066                 u24_27 00AE                 u16_27 0072                 u25_27 00B9  
+               u17_27 0083                 u18_27 008E                 u19_27 00CB                 _swInt 0010  
+               pclath 000A                 status 0003                 wtemp0 007E          __end_of_main 0107  
+              ??_main 0000          ?_sendRepeate 0070                _CCPR1L 0013                ?_swInt 0070  
+              i1l1000 0000                i1l1002 0000                i1l1004 0000                i1l1006 0000  
+              i1l1040 0000                i1l1050 0000                i1l1060 00E3                i1l1052 0000  
+              i1l1062 0000                i1l1054 0000                i1l1046 00C7                i1l1064 0000  
+              i1l1048 0000                i1l1058 00DE                _TRISIO 0085      __end_of_sendByte 00E9  
+              saved_w 007E        __pcstackCOMMON 0070         __end_of_swInt 0060               ??_swInt 0078  
+          __pmaintext 00E9    __size_of_sendFrame 0034            __pintentry 0004               _CCP1CON 0015  
+__size_of_sendRepeate 002A             ?_sendByte 0070     __end_of_sendFrame 0094  end_of_initialization 0107  
+          ??_sendByte 0070           _CCP1CONbits 0015   start_initialization 0107      sendFrame@address 0077  
+    sendFrame@command 0074         __pcstackBANK0 0000     __size_of_sendByte 0025          sendByte@byte 0072  
+           __ptext113 0000             __ptext114 0010             __ptext115 0060             __ptext116 00C4  
+           __ptext117 0094             __ptext118 0000         ??_sendRepeate 0070        __size_of_swInt 0050  
+   interrupt_function 0004             _sendFrame 0060              _GPIObits 0005   __end_of_sendRepeate 00BE  
+          ?_sendFrame 0074            _CMCON0bits 001A             sendByte@i 0073         __size_of_main 001E  
+            _sendByte 00C4           _sendRepeate 0094            _INTCONbits 000B              intlevel1 0000  
+         ??_sendFrame 0075            _OPTION_REG 0081  
