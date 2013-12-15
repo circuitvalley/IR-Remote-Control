@@ -15,6 +15,19 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File001]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\main.p1
+Folder=Intermediary
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File002]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.cof
 Folder=Output
 DeviceName=PIC12F675
@@ -27,7 +40,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File002]
+[File003]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.hex
 Folder=Output
 DeviceName=PIC12F675
@@ -40,7 +53,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File003]
+[File004]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.sym
 Folder=Output
 DeviceName=PIC12F675
@@ -53,7 +66,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File004]
+[File005]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.map
 Folder=Output
 DeviceName=PIC12F675
@@ -66,7 +79,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File005]
+[File006]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.hxl
 Folder=Output
 DeviceName=PIC12F675
@@ -79,7 +92,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File006]
+[File007]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\startup.lst
 Folder=Output
 DeviceName=PIC12F675
@@ -92,7 +105,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File007]
+[File008]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\startup.rlf
 Folder=Output
 DeviceName=PIC12F675
@@ -105,7 +118,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File008]
+[File009]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\doprnt.p1
 Folder=Output
 DeviceName=PIC12F675
@@ -118,7 +131,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File009]
+[File010]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\doprnt.pre
 Folder=Output
 DeviceName=PIC12F675
@@ -131,7 +144,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File010]
+[File011]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.obj
 Folder=Output
 DeviceName=PIC12F675
@@ -144,7 +157,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File011]
+[File012]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.lst
 Folder=Output
 DeviceName=PIC12F675
@@ -157,7 +170,7 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File012]
+[File013]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.rlf
 Folder=Output
 DeviceName=PIC12F675
@@ -170,8 +183,177 @@ SuiteArgsString=
 ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
-[File013]
+[File014]
 Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR RECEVER SOURCE\NEC IR Receiver.mcw.sdb
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File015]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.cof
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File016]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.hex
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File017]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.sym
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File018]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.map
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File019]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.hxl
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File020]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\startup.lst
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File021]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\startup.rlf
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File022]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\doprnt.p1
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File023]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\doprnt.pre
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File024]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.obj
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File025]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.lst
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File026]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.rlf
+Folder=Output
+DeviceName=PIC12F675
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files (x86)\HI-TECH Software\PICC\9.83\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString=C9=3,2
+TraceCmdString=
+DebugOptions=
+[File027]
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Relay Board\NEC IR Receiver.mcw.sdb
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
