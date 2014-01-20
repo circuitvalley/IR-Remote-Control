@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.p1
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\main.p1
 Folder=Intermediary
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -15,7 +15,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File001]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.cof
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.cof
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -28,7 +28,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File002]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.hex
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.hex
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -41,7 +41,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File003]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.sym
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.sym
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -54,7 +54,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File004]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.map
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.map
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -67,7 +67,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File005]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.hxl
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.hxl
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -80,7 +80,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File006]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\startup.lst
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\startup.lst
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -93,7 +93,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File007]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\startup.rlf
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\startup.rlf
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -106,7 +106,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File008]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\doprnt.p1
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\doprnt.p1
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -119,7 +119,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File009]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\doprnt.pre
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\doprnt.pre
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -132,7 +132,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File010]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.obj
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.obj
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -145,7 +145,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File011]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.lst
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.lst
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -158,7 +158,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File012]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.rlf
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.rlf
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
@@ -171,7 +171,7 @@ ToolArgsString=C9=3,2
 TraceCmdString=
 DebugOptions=
 [File013]
-Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\NEC IR Receiver Repet Code Momentary ON.sdb
+Location=C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\NEC IR Receiver Repet Code Momentary ON.sdb
 Folder=Output
 DeviceName=PIC12F675
 LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}

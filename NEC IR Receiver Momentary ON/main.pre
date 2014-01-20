@@ -1,5 +1,5 @@
 
-# 1 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+# 1 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\main.c"
 
 # 9 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic.h"
 extern unsigned char __osccal_val(void);
@@ -567,7 +567,7 @@ extern void memcpyee(eeprom unsigned char *to, const unsigned char *from, unsign
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+# 27 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Receiver Momentary ON\main.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0x31FC & 0x31F7 & 0x31FF & 0x31DF & 0x31FF & 0x31FF");
 
 # 55
@@ -780,7 +780,6 @@ necpoj=0;
 }else if(necpoj == 70 )
 {
 momantary= 440;
-
 necpoj = 0;
 TIMEOUT = 11044;
 PREPULSE = 8032;

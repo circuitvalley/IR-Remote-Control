@@ -45,12 +45,12 @@ __CONFIG(FOSC_INTRCIO & WDTE_OFF & PWRTE_OFF & MCLRE_OFF & CP_OFF & CPD_OFF);
 #define TICKS2o5ms	1506		// ticks in 2.5ms
 #define TICKS2ms	2008		// ticks in 2ms
 #define TICKS3ms  	3012		// ticks in 3sm
-#define TICKS0o85ms	852			// ticks in 0.6ms
+#define TICKS0o85ms	852			// ticks in 0.85ms
 #define TICKS0o6ms	602			// ticks in 0.6ms
 #define TICKS0o3ms 	301			// ticks in 0.3ms
 #define TICKS0o2ms	200			// ticks in 0.2ms
 #define TICKS1o8ms	1807		// ticks in 1.8ms
-#define TICKS8ms 	8032		// Tick
+#define TICKS8ms 	8032		// Tick in 8 ms
 
 unsigned int TIMEOUT  =   TICKS11ms;       	// the pulse should occur before this time excede Otherwise it is an error 
 unsigned int PREPULSE = TICKS8ms;			// the interrupt should occur after this time Otherwise it is an error
@@ -285,7 +285,7 @@ if ((tdiff>PREPULSE) && (tdiff<TIMEOUT) )		// the edge (interrupt) occurrence ti
 					if((!(address & notaddress)) && (!(command & notcommand)))		// check weather the received data is vaild or not
 					{
 					dataready =1;
-					momantary= 450;	//~200ms
+					momantary= 450;	//~450ms
 					}
 					else
 					{
@@ -298,11 +298,10 @@ if ((tdiff>PREPULSE) && (tdiff<TIMEOUT) )		// the edge (interrupt) occurrence ti
 			}
 
 	}else if(necpoj == 70 )
-	{
-		momantary= 440;		//~102ms
-	
+	{							// if developing volume control kind of application increase or decrease value here according to command received.
+		momantary= 440;		//~440ms is good enough even if we miss few repeat code		
 			necpoj = 0;	
-			TIMEOUT 	=	TICKS11ms;							// some error occured reset state machine 
+			TIMEOUT 	=	TICKS11ms;						
 			PREPULSE 	=	TICKS8ms;
 
 
