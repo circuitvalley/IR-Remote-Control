@@ -1,0 +1,1178 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.83 build 10920 
+                                                                                               Tue Jan 21 02:07:43 2014
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 10920
+     1                           	processor	12F675
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	idataBANK0,global,class=CODE,delta=2
+     6                           	psect	cinit,global,class=CODE,delta=2
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	clrtext,global,class=CODE,delta=2
+    10                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    11                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    12                           	psect	maintext,global,class=CODE,delta=2
+    13                           	psect	text77,local,class=CODE,delta=2
+    14                           	psect	intentry,global,class=CODE,delta=2
+    15                           	psect	text78,local,class=CODE,delta=2
+    16                           	psect	text79,local,class=CODE,delta=2
+    17                           	psect	text80,local,class=CODE,delta=2
+    18                           	psect	pa_nodes,global,class=CODE,delta=2
+    19                           	dabs	1,0x5E,2
+    20  000A                     	;#
+    21                           
+    22                           	psect	config
+    23  2007  31D4               	dw	12756	;#
+    24                           
+    25                           	psect	idataBANK0
+    26  0000                     __pidataBANK0:	
+    27  0019                     _CMCON	set	25
+    28  0005                     _GPIO	set	5
+    29  0005                     _GPIObits	set	5
+    30  000B                     _INTCONbits	set	11
+    31  0001                     _TMR0	set	1
+    32  009F                     _ANSEL	set	159
+    33  009B                     _EEADR	set	155
+    34  009C                     _EECON1bits	set	156
+    35  009D                     _EECON2	set	157
+    36  009A                     _EEDATA	set	154
+    37  0096                     _IOC	set	150
+    38  0081                     _OPTION_REG	set	129
+    39  0085                     _TRISIO	set	133
+    40                           
+    41                           	psect	cinit
+    42  019D                     start_initialization:	
+    43  019D  3020               	movlw	low __pbssBANK0
+    44                           
+    45                           ; Clear objects allocated to BANK0
+    46  019E  1383               	bcf	3,7	;select IRP bank0
+    47  019F  0084               	movwf	4
+    48  01A0  3031               	movlw	low (__pbssBANK0+17)
+    49  01A1  21AC               	fcall	clear_ram
+    50                           
+    51                           ;initializer for _PREPULSE
+    52  01A2  3060               	movlw	96
+    53  01A3  00BA               	movwf	__pdataBANK0& (0+127)
+    54  01A4  301F               	movlw	31
+    55  01A5  00BB               	movwf	(__pdataBANK0+1)& (0+127)
+    56                           
+    57                           ;initializer for _TIMEOUT
+    58  01A6  3024               	movlw	36
+    59  01A7  00BC               	movwf	(__pdataBANK0+2)& (0+127)
+    60  01A8  302B               	movlw	43
+    61  01A9  00BD               	movwf	(__pdataBANK0+3)& (0+127)
+    62  01AA                     end_of_initialization:	
+    63                           ;End of C runtime variable initialization code
+    64                           
+    65  01AA  0183               	clrf	3
+    66  01AB  2913               	ljmp	_main	;jump to C main() function
+    67                           
+    68                           	psect	bssBANK0
+    69  0020                     __pbssBANK0:	
+    70  0020                     interruptOnChangeIsr@rxbuffer:	
+    71  0020                     	ds	4
+    72  0024                     _timer:	
+    73  0024                     	ds	3
+    74  0027                     _momantary:	
+    75  0027                     	ds	2
+    76  0029                     _address:	
+    77  0029                     	ds	1
+    78  002A                     _command:	
+    79  002A                     	ds	1
+    80  002B                     _dataready:	
+    81  002B                     	ds	1
+    82  002C                     _necpoj:	
+    83  002C                     	ds	1
+    84  002D                     _notaddress:	
+    85  002D                     	ds	1
+    86  002E                     _notcommand:	
+    87  002E                     	ds	1
+    88  002F                     timerInterruptIsr@flag:	
+    89  002F                     	ds	1
+    90  0030                     timerInterruptIsr@ms_counter:	
+    91  0030                     	ds	1
+    92                           
+    93                           	psect	dataBANK0
+    94  003A                     __pdataBANK0:	
+    95  003A                     _PREPULSE:	
+    96  003A                     	ds	2
+    97  003C                     _TIMEOUT:	
+    98  003C                     	ds	2
+    99                           
+   100                           	psect	clrtext
+   101  01AC                     clear_ram:	
+   102                           ;	Called with FSR containing the base address, and
+   103                           ;	W with the last address+1
+   104                           
+   105  01AC  0064               	clrwdt	;clear the watchdog before getting into this loop
+   106  01AD                     clrloop:	
+   107  01AD  0180               	clrf	0	;clear RAM location pointed to by FSR
+   108  01AE  0A84               	incf	4,f	;increment pointer
+   109  01AF  0604               	xorwf	4,w	;XOR with final address
+   110  01B0  1903               	btfsc	3,2	;have we reached the end yet?
+   111  01B1  3400               	retlw	0	;all done for this memory range, return
+   112  01B2  0604               	xorwf	4,w	;XOR again to restore value
+   113  01B3  29AD               	goto	clrloop	;do the next byte
+   114                           
+   115                           	psect	cstackCOMMON
+   116  0000                     __pcstackCOMMON:	
+   117  0000                     ??_timerInterruptIsr:	
+   118  0000                     ??_main:	
+   119                           ; 0 bytes @ 0x0
+   120                           
+   121                           
+   122                           	psect	cstackBANK0
+   123  0031                     __pcstackBANK0:	
+   124                           ; 0 bytes @ 0x0
+   125                           
+   126  0031                     ?_timerInterruptIsr:	
+   127  0031                     ?_interruptOnChangeIsr:	
+   128                           ; 0 bytes @ 0x0
+   129                           
+   130  0031                     ??_interruptOnChangeIsr:	
+   131                           ; 0 bytes @ 0x0
+   132                           
+   133  0031                     ?_t0intr:	
+   134                           ; 0 bytes @ 0x0
+   135                           
+   136  0031                     ?_main:	
+   137                           ; 0 bytes @ 0x0
+   138                           
+   139                           
+   140                           ; 0 bytes @ 0x0
+   141  0031                     	ds	3
+   142  0034                     interruptOnChangeIsr@pin:	
+   143                           
+   144                           ; 1 bytes @ 0x3
+   145  0034                     	ds	1
+   146  0035                     interruptOnChangeIsr@tdiff:	
+   147                           
+   148                           ; 3 bytes @ 0x4
+   149  0035                     	ds	3
+   150  0038                     ??_t0intr:	
+   151                           
+   152                           ; 0 bytes @ 0x7
+   153  0038                     	ds	2
+   154                           
+   155                           	psect	maintext
+   156  0113                     __pmaintext:	
+   157 ;;Data sizes: Strings 0, constant 0, data 4, bss 17, persistent 0 stack 0
+   158 ;;Auto spaces:   Size  Autos    Used
+   159 ;; COMMON           0      0       0
+   160 ;; BANK0           62      9      30
+   161 ;;
+   162 ;; Pointer list with targets:
+   163 ;;
+   164 ;; Critical Paths under _main in COMMON
+   165 ;;
+   166 ;;   None.
+   167 ;;
+   168 ;; Critical Paths under _t0intr in COMMON
+   169 ;;
+   170 ;;   None.
+   171 ;;
+   172 ;; Critical Paths under _main in BANK0
+   173 ;;
+   174 ;;   None.
+   175 ;;
+   176 ;; Critical Paths under _t0intr in BANK0
+   177 ;;
+   178 ;;   _t0intr->_interruptOnChangeIsr
+   179 ;;
+   180 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   181 ;;
+   182 ;;
+   183 ;;Call Graph Tables:
+   184 ;;
+   185 ;; ---------------------------------------------------------------------------------
+   186 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   187 ;; ---------------------------------------------------------------------------------
+   188 ;; (0) _main                                                 0     0      0       0
+   189 ;; ---------------------------------------------------------------------------------
+   190 ;; Estimated maximum stack depth 0
+   191 ;; ---------------------------------------------------------------------------------
+   192 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   193 ;; ---------------------------------------------------------------------------------
+   194 ;; (1) _t0intr                                               2     2      0     223
+   195 ;;                                              7 BANK0      2     2      0
+   196 ;;                  _timerInterruptIsr
+   197 ;;               _interruptOnChangeIsr
+   198 ;; ---------------------------------------------------------------------------------
+   199 ;; (2) _interruptOnChangeIsr                                 7     7      0     223
+   200 ;;                                              0 BANK0      7     7      0
+   201 ;; ---------------------------------------------------------------------------------
+   202 ;; (2) _timerInterruptIsr                                    0     0      0       0
+   203 ;; ---------------------------------------------------------------------------------
+   204 ;; Estimated maximum stack depth 2
+   205 ;; ---------------------------------------------------------------------------------
+   206 ;; Call Graph Graphs:
+   207 ;; _main (ROOT)
+   208 ;;
+   209 ;; _t0intr (ROOT)
+   210 ;;   _timerInterruptIsr
+   211 ;;   _interruptOnChangeIsr
+   212 ;;
+   213 ;; Address spaces:
+   214 ;;Name               Size   Autos  Total    Cost      Usage
+   215 ;;SFR1                 0      0       0       2        0.0%
+   216 ;;BITSFR1              0      0       0       2        0.0%
+   217 ;;CODE                 0      0       0       0        0.0%
+   218 ;;DATA                 0      0      22       6        0.0%
+   219 ;;ABS                  0      0      1E       5        0.0%
+   220 ;;NULL                 0      0       0       0        0.0%
+   221 ;;STACK                0      0       4       2        0.0%
+   222 ;;BANK0               3E      9      1E       4       48.4%
+   223 ;;BITBANK0            3E      0       0       3        0.0%
+   224 ;;SFR0                 0      0       0       1        0.0%
+   225 ;;BITSFR0              0      0       0       1        0.0%
+   226 ;;COMMON               0      0       0       1        0.0%
+   227 ;;BITCOMMON            0      0       0       0        0.0%
+   228 ;;EEDATA              80      0       0       0        0.0%
+   229                           
+   230                           
+   231 ;; *************** function _main *****************
+   232 ;; Defined at:
+   233 ;;		line 98 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+   234 ;; Parameters:    Size  Location     Type
+   235 ;;		None
+   236 ;; Auto vars:     Size  Location     Type
+   237 ;;		None
+   238 ;; Return value:  Size  Location     Type
+   239 ;;		None               void
+   240 ;; Registers used:
+   241 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   242 ;; Tracked objects:
+   243 ;;		On entry : 17F/0
+   244 ;;		On exit  : 17F/0
+   245 ;;		Unchanged: FFE80/0
+   246 ;; Data sizes:     COMMON   BANK0
+   247 ;;      Params:         0       0
+   248 ;;      Locals:         0       0
+   249 ;;      Temps:          0       0
+   250 ;;      Totals:         0       0
+   251 ;;Total ram usage:        0 bytes
+   252 ;; Hardware stack levels required when called:    2
+   253 ;; This function calls:
+   254 ;;		Nothing
+   255 ;; This function is called by:
+   256 ;;		Startup code after reset
+   257 ;; This function uses a non-reentrant model
+   258 ;;
+   259  0113                     _main:	
+   260                           
+   261                           ;main.c: 99: CMCON=0x7;
+   262                           
+   263                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0]
+   264  0113  3007               	movlw	7
+   265  0114  0099               	movwf	25	;volatile
+   266                           
+   267                           ;main.c: 100: ANSEL=0x00;
+   268  0115  1683               	bsf	3,5	;RP0=1, select bank1
+   269  0116  019F               	clrf	31	;volatile
+   270                           
+   271                           ;main.c: 101: TRISIO=0x8;
+   272  0117  3008               	movlw	8
+   273  0118  0085               	movwf	5	;volatile
+   274                           
+   275                           ;main.c: 102: TMR0 = 0;
+   276  0119  1283               	bcf	3,5	;RP0=0, select bank0
+   277  011A  0181               	clrf	1	;volatile
+   278                           
+   279                           ;main.c: 103: OPTION_REG = 0x88;
+   280  011B  3088               	movlw	136
+   281  011C  1683               	bsf	3,5	;RP0=1, select bank1
+   282  011D  0081               	movwf	1	;volatile
+   283                           
+   284                           ;main.c: 106: IOC = 0x8;
+   285  011E  3008               	movlw	8
+   286  011F  0096               	movwf	22	;volatile
+   287                           
+   288                           ;main.c: 107: INTCONbits.T0IE = 1;
+   289  0120  168B               	bsf	11,5	;volatile
+   290                           
+   291                           ;main.c: 108: INTCONbits.T0IF = 0;
+   292  0121  110B               	bcf	11,2	;volatile
+   293                           
+   294                           ;main.c: 109: INTCONbits.GPIE = 1;
+   295  0122  158B               	bsf	11,3	;volatile
+   296                           
+   297                           ;main.c: 110: INTCONbits.GPIF = 0;
+   298  0123  100B               	bcf	11,0	;volatile
+   299                           
+   300                           ;main.c: 111: INTCONbits.PEIE = 1;
+   301  0124  170B               	bsf	11,6	;volatile
+   302                           
+   303                           ;main.c: 112: INTCONbits.GIE = 1;
+   304  0125  178B               	bsf	11,7	;volatile
+   305                           
+   306                           ;main.c: 116: EEADR = 0x00;
+   307  0126  019B               	clrf	27	;volatile
+   308                           
+   309                           ;main.c: 117: EECON1bits.RD = 1;
+   310  0127  141C               	bsf	28,0	;volatile
+   311                           
+   312                           ;main.c: 118: GPIO = EEDATA;
+   313  0128  081A               	movf	26,w	;volatile
+   314  0129  1283               	bcf	3,5	;RP0=0, select bank0
+   315  012A  0085               	movwf	5	;volatile
+   316  012B                     l1555:	
+   317                           
+   318                           ;main.c: 121: {
+   319                           ;main.c: 124: if(dataready )
+   320  012B  082B               	movf	_dataready,w
+   321  012C  1903               	btfsc	3,2
+   322  012D  292B               	goto	l1555
+   323  012E  293C               	goto	l1561
+   324  012F                     l376:	
+   325                           ;main.c: 136: {
+   326                           ;main.c: 137: case 0x50: GPIObits.GPIO0 = 1;
+   327                           
+   328  012F  1405               	bsf	5,0	;volatile
+   329                           
+   330                           ;main.c: 138: break;
+   331  0130  294D               	goto	l1563
+   332  0131                     l378:	
+   333                           ;main.c: 139: case 0xD8: GPIObits.GPIO1 = 1;
+   334                           
+   335  0131  1485               	bsf	5,1	;volatile
+   336                           
+   337                           ;main.c: 140: break;
+   338  0132  294D               	goto	l1563
+   339  0133                     l379:	
+   340                           ;main.c: 141: case 0xF8: GPIObits.GPIO2 = 1;
+   341                           
+   342  0133  1505               	bsf	5,2	;volatile
+   343                           
+   344                           ;main.c: 142: break;
+   345  0134  294D               	goto	l1563
+   346  0135                     l380:	
+   347                           ;main.c: 143: case 0x30: GPIObits.GPIO4 = 1;
+   348                           
+   349  0135  1605               	bsf	5,4	;volatile
+   350                           
+   351                           ;main.c: 144: break;
+   352  0136  294D               	goto	l1563
+   353  0137                     l381:	
+   354                           ;main.c: 145: case 0xB0: GPIObits.GPIO0 = 0;
+   355                           
+   356  0137  1005               	bcf	5,0	;volatile
+   357                           
+   358                           ;main.c: 146: GPIObits.GPIO1 = 0;
+   359  0138  1085               	bcf	5,1	;volatile
+   360                           
+   361                           ;main.c: 147: GPIObits.GPIO2 = 0;
+   362  0139  1105               	bcf	5,2	;volatile
+   363                           
+   364                           ;main.c: 148: GPIObits.GPIO4 = 0;
+   365  013A  1205               	bcf	5,4	;volatile
+   366                           
+   367                           ;main.c: 149: break;
+   368  013B  294D               	goto	l1563
+   369  013C                     l1561:	
+   370  013C  082A               	movf	_command,w
+   371                           
+   372                           ; Switch size 1, requested type "space"
+   373                           ; Number of cases is 5, Range of values is 48 to 248
+   374                           ; switch strategies available:
+   375                           ; Name         Instructions Cycles
+   376                           ; simple_byte           16     9 (average)
+   377                           ; direct_byte          210     9 (fixed)
+   378                           ; jumptable            263     9 (fixed)
+   379                           ;	Chosen strategy is simple_byte
+   380  013D  3A30               	xorlw	48	; case 48
+   381  013E  1903               	skipnz
+   382  013F  2935               	goto	l380
+   383  0140  3A60               	xorlw	96	; case 80
+   384  0141  1903               	skipnz
+   385  0142  292F               	goto	l376
+   386  0143  3AE0               	xorlw	224	; case 176
+   387  0144  1903               	skipnz
+   388  0145  2937               	goto	l381
+   389  0146  3A68               	xorlw	104	; case 216
+   390  0147  1903               	skipnz
+   391  0148  2931               	goto	l378
+   392  0149  3A20               	xorlw	32	; case 248
+   393  014A  1903               	skipnz
+   394  014B  2933               	goto	l379
+   395  014C  294D               	goto	l1563
+   396  014D                     l1563:	
+   397                           
+   398                           ;main.c: 154: EEADR = 0x00;
+   399  014D  1683               	bsf	3,5	;RP0=1, select bank1
+   400  014E  019B               	clrf	27	;volatile
+   401                           
+   402                           ;main.c: 155: EEDATA = GPIO;
+   403  014F  1283               	bcf	3,5	;RP0=0, select bank0
+   404  0150  0805               	movf	5,w	;volatile
+   405  0151  1683               	bsf	3,5	;RP0=1, select bank1
+   406  0152  009A               	movwf	26	;volatile
+   407                           
+   408                           ;main.c: 156: EECON1bits.WREN = 1;
+   409  0153  151C               	bsf	28,2	;volatile
+   410                           
+   411                           ;main.c: 157: INTCONbits.GIE = 0;
+   412  0154  138B               	bcf	11,7	;volatile
+   413                           
+   414                           ;main.c: 158: EECON2 = 0x55;
+   415  0155  3055               	movlw	85
+   416  0156  009D               	movwf	29	;volatile
+   417                           
+   418                           ;main.c: 159: EECON2 = 0xAA;
+   419  0157  30AA               	movlw	170
+   420  0158  009D               	movwf	29	;volatile
+   421                           
+   422                           ;main.c: 160: EECON1bits.WR = 1;
+   423  0159  149C               	bsf	28,1	;volatile
+   424                           
+   425                           ;main.c: 161: INTCONbits.GIE = 1;
+   426  015A  178B               	bsf	11,7	;volatile
+   427                           
+   428                           ;main.c: 163: dataready=0;
+   429  015B  1283               	bcf	3,5	;RP0=0, select bank0
+   430  015C  01AB               	clrf	_dataready
+   431  015D  292B               	goto	l1555
+   432  015E                     __end_of_main:	
+   433                           
+   434                           	psect	text77
+   435  018B                     __ptext77:	
+   436 ;; =============== function _main ends ============
+   437                           
+   438                           
+   439 ;; *************** function _t0intr *****************
+   440 ;; Defined at:
+   441 ;;		line 78 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+   442 ;; Parameters:    Size  Location     Type
+   443 ;;		None
+   444 ;; Auto vars:     Size  Location     Type
+   445 ;;		None
+   446 ;; Return value:  Size  Location     Type
+   447 ;;		None               void
+   448 ;; Registers used:
+   449 ;;		wreg, status,2, status,0, pclath, cstack
+   450 ;; Tracked objects:
+   451 ;;		On entry : 0/0
+   452 ;;		On exit  : 20/0
+   453 ;;		Unchanged: FFFDF/0
+   454 ;; Data sizes:     COMMON   BANK0
+   455 ;;      Params:         0       0
+   456 ;;      Locals:         0       0
+   457 ;;      Temps:          0       2
+   458 ;;      Totals:         0       2
+   459 ;;Total ram usage:        2 bytes
+   460 ;; Hardware stack levels used:    1
+   461 ;; Hardware stack levels required when called:    1
+   462 ;; This function calls:
+   463 ;;		_timerInterruptIsr
+   464 ;;		_interruptOnChangeIsr
+   465 ;; This function is called by:
+   466 ;;		Interrupt level 1
+   467 ;; This function uses a non-reentrant model
+   468 ;;
+   469  018B                     _t0intr:	
+   470                           
+   471                           ;main.c: 79: if(INTCONbits.T0IF)
+   472  018B  1D0B               	btfss	11,2	;volatile
+   473  018C  2990               	goto	i1l367
+   474                           
+   475                           ;main.c: 80: {
+   476                           ;main.c: 81: timerInterruptIsr();
+   477  018D  215E               	fcall	_timerInterruptIsr
+   478                           
+   479                           ;main.c: 82: INTCONbits.T0IF =0;
+   480  018E  110B               	bcf	11,2	;volatile
+   481                           
+   482                           ;main.c: 83: }
+   483  018F  2996               	goto	i1l370
+   484  0190                     i1l367:	
+   485                           
+   486                           ;main.c: 84: else if (INTCONbits.GPIF)
+   487  0190  1C0B               	btfss	11,0	;volatile
+   488  0191  2996               	goto	i1l370
+   489                           
+   490                           ;main.c: 85: {
+   491                           ;main.c: 86: GPIObits.GPIO5=1;
+   492  0192  1685               	bsf	5,5	;volatile
+   493                           
+   494                           ;main.c: 87: interruptOnChangeIsr();
+   495  0193  2010               	fcall	_interruptOnChangeIsr
+   496                           
+   497                           ;main.c: 88: INTCONbits.GPIF =0;
+   498  0194  100B               	bcf	11,0	;volatile
+   499                           
+   500                           ;main.c: 89: GPIObits.GPIO5=0;
+   501  0195  1285               	bcf	5,5	;volatile
+   502  0196                     i1l370:	
+   503  0196  0839               	movf	??_t0intr+1,w
+   504  0197  008A               	movwf	10
+   505  0198  0E38               	swapf	??_t0intr^0,w
+   506  0199  0083               	movwf	3
+   507  019A  0EDE               	swapf	94,f
+   508  019B  0E5E               	swapf	94,w
+   509  019C  0009               	retfie
+   510  019D                     __end_of_t0intr:	
+   511                           
+   512                           	psect	intentry
+   513  0004                     __pintentry:	
+   514                           ; Regs used in _t0intr: [wreg+status,2+status,0+pclath+cstack]
+   515                           
+   516  0004                     interrupt_function:	
+   517  005E                     saved_w	set	btemp
+   518  0004  00DE               	movwf	btemp
+   519  0005  0E03               	swapf	3,w
+   520  0006  1283               	bcf	3,5	;RP0=0, select bank0
+   521  0007  00B8               	movwf	??_t0intr
+   522  0008  080A               	movf	10,w
+   523  0009  00B9               	movwf	??_t0intr+1
+   524  000A  298B               	ljmp	_t0intr
+   525                           
+   526                           	psect	text78
+   527  0010                     __ptext78:	
+   528 ;; =============== function _t0intr ends ============
+   529                           
+   530                           
+   531 ;; *************** function _interruptOnChangeIsr *****************
+   532 ;; Defined at:
+   533 ;;		line 172 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+   534 ;; Parameters:    Size  Location     Type
+   535 ;;		None
+   536 ;; Auto vars:     Size  Location     Type
+   537 ;;  tdiff           3    4[BANK0 ] unsigned um
+   538 ;;  pin             1    3[BANK0 ] unsigned char 
+   539 ;; Return value:  Size  Location     Type
+   540 ;;		None               void
+   541 ;; Registers used:
+   542 ;;		wreg, status,2, status,0
+   543 ;; Tracked objects:
+   544 ;;		On entry : 20/0
+   545 ;;		On exit  : 20/0
+   546 ;;		Unchanged: FFFDF/0
+   547 ;; Data sizes:     COMMON   BANK0
+   548 ;;      Params:         0       0
+   549 ;;      Locals:         0       4
+   550 ;;      Temps:          0       3
+   551 ;;      Totals:         0       7
+   552 ;;Total ram usage:        7 bytes
+   553 ;; Hardware stack levels used:    1
+   554 ;; This function calls:
+   555 ;;		Nothing
+   556 ;; This function is called by:
+   557 ;;		_t0intr
+   558 ;; This function uses a non-reentrant model
+   559 ;;
+   560  0010                     _interruptOnChangeIsr:	
+   561                           
+   562                           ;main.c: 174: unsigned short long tdiff;
+   563                           ;main.c: 175: unsigned char pin;
+   564                           ;main.c: 176: static unsigned long rxbuffer;
+   565                           ;main.c: 179: tdiff = ((timer<<8)+TMR0) ;
+   566                           
+   567                           ; Regs used in _interruptOnChangeIsr: [wreg+status,2+status,0]
+   568  0010  0824               	movf	_timer,w
+   569  0011  00B1               	movwf	??_interruptOnChangeIsr
+   570  0012  0825               	movf	_timer+1,w
+   571  0013  00B2               	movwf	??_interruptOnChangeIsr+1
+   572  0014  0826               	movf	_timer+2,w
+   573  0015  00B3               	movwf	??_interruptOnChangeIsr+2
+   574  0016  0832               	movf	??_interruptOnChangeIsr+1,w
+   575  0017  00B3               	movwf	??_interruptOnChangeIsr+2
+   576  0018  0831               	movf	??_interruptOnChangeIsr,w
+   577  0019  00B2               	movwf	??_interruptOnChangeIsr+1
+   578  001A  01B1               	clrf	??_interruptOnChangeIsr
+   579  001B  0831               	movf	??_interruptOnChangeIsr,w
+   580  001C  00B5               	movwf	interruptOnChangeIsr@tdiff
+   581  001D  0832               	movf	??_interruptOnChangeIsr+1,w
+   582  001E  00B6               	movwf	interruptOnChangeIsr@tdiff+1
+   583  001F  0833               	movf	??_interruptOnChangeIsr+2,w
+   584  0020  00B7               	movwf	interruptOnChangeIsr@tdiff+2
+   585  0021  0801               	movf	1,w	;volatile
+   586  0022  07B5               	addwf	interruptOnChangeIsr@tdiff,f
+   587  0023  3001               	movlw	1
+   588  0024  1803               	skipnc
+   589  0025  07B6               	addwf	interruptOnChangeIsr@tdiff+1,f
+   590  0026  1803               	skipnc
+   591  0027  07B7               	addwf	interruptOnChangeIsr@tdiff+2,f
+   592                           
+   593                           ;main.c: 181: pin = GPIObits.GPIO3;
+   594  0028  3000               	movlw	0
+   595  0029  1985               	btfsc	5,3	;volatile
+   596  002A  3001               	movlw	1
+   597  002B  00B4               	movwf	interruptOnChangeIsr@pin
+   598                           
+   599                           ;main.c: 182: TMR0 = 0;
+   600  002C  0181               	clrf	1	;volatile
+   601                           
+   602                           ;main.c: 183: timer = 0;
+   603  002D  01A4               	clrf	_timer
+   604  002E  01A5               	clrf	_timer+1
+   605  002F  01A6               	clrf	_timer+2
+   606                           
+   607                           ;main.c: 215: if ((tdiff>PREPULSE) && (tdiff<TIMEOUT) )
+   608  0030  083A               	movf	_PREPULSE,w
+   609  0031  00B1               	movwf	??_interruptOnChangeIsr
+   610  0032  083B               	movf	_PREPULSE+1,w
+   611  0033  00B2               	movwf	??_interruptOnChangeIsr+1
+   612  0034  01B3               	clrf	??_interruptOnChangeIsr+2
+   613  0035  0837               	movf	interruptOnChangeIsr@tdiff+2,w
+   614  0036  0233               	subwf	??_interruptOnChangeIsr+2,w
+   615  0037  1D03               	skipz
+   616  0038  283F               	goto	u35_25
+   617  0039  0836               	movf	interruptOnChangeIsr@tdiff+1,w
+   618  003A  0232               	subwf	??_interruptOnChangeIsr+1,w
+   619  003B  1D03               	skipz
+   620  003C  283F               	goto	u35_25
+   621  003D  0835               	movf	interruptOnChangeIsr@tdiff,w
+   622  003E  0231               	subwf	??_interruptOnChangeIsr,w
+   623  003F                     u35_25:	
+   624  003F  1803               	skipnc
+   625  0040  28F7               	goto	i1l1511
+   626  0041  083C               	movf	_TIMEOUT,w
+   627  0042  00B1               	movwf	??_interruptOnChangeIsr
+   628  0043  083D               	movf	_TIMEOUT+1,w
+   629  0044  00B2               	movwf	??_interruptOnChangeIsr+1
+   630  0045  01B3               	clrf	??_interruptOnChangeIsr+2
+   631  0046  0833               	movf	??_interruptOnChangeIsr+2,w
+   632  0047  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   633  0048  1D03               	skipz
+   634  0049  2850               	goto	u36_25
+   635  004A  0832               	movf	??_interruptOnChangeIsr+1,w
+   636  004B  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   637  004C  1D03               	skipz
+   638  004D  2850               	goto	u36_25
+   639  004E  0831               	movf	??_interruptOnChangeIsr,w
+   640  004F  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   641  0050                     u36_25:	
+   642  0050  1803               	skipnc
+   643  0051  28F7               	goto	i1l1511
+   644                           
+   645                           ;main.c: 216: {
+   646                           ;main.c: 218: if(necpoj==1 || necpoj==2)
+   647  0052  032C               	decf	_necpoj,w
+   648  0053  1903               	skipnz
+   649  0054  2859               	goto	i1l1423
+   650  0055  082C               	movf	_necpoj,w
+   651  0056  3A02               	xorlw	2
+   652  0057  1D03               	skipz
+   653  0058  28A9               	goto	i1l1465
+   654  0059                     i1l1423:	
+   655                           
+   656                           ;main.c: 219: {
+   657                           ;main.c: 221: if((pin==1) && (necpoj==1))
+   658  0059  0B34               	decfsz	interruptOnChangeIsr@pin,w
+   659  005A  2867               	goto	i1l1433
+   660  005B  0B2C               	decfsz	_necpoj,w
+   661  005C  2867               	goto	i1l1433
+   662  005D  3092               	movlw	146
+   663                           
+   664                           ;main.c: 222: {
+   665                           ;main.c: 223: necpoj++;
+   666  005E  0AAC               	incf	_necpoj,f
+   667                           
+   668                           ;main.c: 224: TIMEOUT = 5522;
+   669  005F  00BC               	movwf	_TIMEOUT
+   670  0060  3015               	movlw	21
+   671  0061  00BD               	movwf	_TIMEOUT+1
+   672                           
+   673                           ;main.c: 225: PREPULSE = 2008;
+   674  0062  30D8               	movlw	216
+   675  0063  00BA               	movwf	_PREPULSE
+   676  0064  3007               	movlw	7
+   677  0065  00BB               	movwf	_PREPULSE+1
+   678                           
+   679                           ;main.c: 227: }
+   680  0066  0008               	return
+   681  0067                     i1l1433:	
+   682                           
+   683                           ;main.c: 228: else if((pin==0)&& (necpoj ==2))
+   684  0067  08B4               	movf	interruptOnChangeIsr@pin,f
+   685  0068  1D03               	skipz
+   686  0069  28F2               	goto	i1l1453
+   687  006A  082C               	movf	_necpoj,w
+   688  006B  3A02               	xorlw	2
+   689  006C  1D03               	skipz
+   690  006D  28F2               	goto	i1l1453
+   691                           
+   692                           ;main.c: 229: {
+   693                           ;main.c: 230: if((tdiff>1807)&&(tdiff<3012) )
+   694  006E  3000               	movlw	0
+   695  006F  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   696  0070  1D03               	skipz
+   697  0071  2878               	goto	u43_25
+   698  0072  3007               	movlw	7
+   699  0073  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   700  0074  1D03               	skipz
+   701  0075  2878               	goto	u43_25
+   702  0076  3010               	movlw	16
+   703  0077  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   704  0078                     u43_25:	
+   705  0078  3000               	movlw	0
+   706  0079  1C03               	skipc
+   707  007A  288D               	goto	L1
+   708  007B  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   709  007C  1D03               	skipz
+   710  007D  2884               	goto	u44_25
+   711  007E  300B               	movlw	11
+   712  007F  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   713  0080  1D03               	skipz
+   714  0081  2884               	goto	u44_25
+   715  0082  30C4               	movlw	196
+   716  0083  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   717  0084                     u44_25:	
+   718  0084  1803               	skipnc
+   719  0085  288C               	goto	i1l1443
+   720                           
+   721                           ;main.c: 231: {
+   722                           ;main.c: 232: necpoj=70;
+   723  0086  3046               	movlw	70
+   724  0087  00AC               	movwf	_necpoj
+   725                           
+   726                           ;main.c: 233: TIMEOUT = 852;
+   727  0088  3054               	movlw	84
+   728  0089  00BC               	movwf	_TIMEOUT
+   729  008A  3003               	movlw	3
+   730                           
+   731                           ;main.c: 234: PREPULSE = 200;
+   732                           
+   733                           ;main.c: 235: }else if((tdiff>3012)&&(tdiff<5522) )
+   734  008B  290E               	ljmp	PL3	;call to abstracted procedure
+   735  008C                     i1l1443:	
+   736  008C  3000               	movlw	0
+   737  008D                     L1:	
+   738  008D  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   739  008E  1D03               	skipz
+   740  008F  2896               	goto	u45_25
+   741  0090  300B               	movlw	11
+   742  0091  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   743  0092  1D03               	skipz
+   744  0093  2896               	goto	u45_25
+   745  0094  30C5               	movlw	197
+   746  0095  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   747  0096                     u45_25:	
+   748  0096  1C03               	skipc
+   749  0097  28F2               	goto	i1l1453
+   750  0098  3000               	movlw	0
+   751  0099  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   752  009A  1D03               	skipz
+   753  009B  28A2               	goto	u46_25
+   754  009C  3015               	movlw	21
+   755  009D  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   756  009E  1D03               	skipz
+   757  009F  28A2               	goto	u46_25
+   758  00A0  3092               	movlw	146
+   759  00A1  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   760  00A2                     u46_25:	
+   761  00A2  1803               	skipnc
+   762  00A3  28F2               	goto	i1l1453
+   763  00A4  3005               	movlw	5
+   764                           
+   765                           ;main.c: 236: {
+   766                           ;main.c: 237: necpoj++;
+   767  00A5  0AAC               	incf	_necpoj,f
+   768                           
+   769                           ;main.c: 239: TIMEOUT = 2309;
+   770  00A6  00BC               	movwf	_TIMEOUT
+   771  00A7  3009               	movlw	9
+   772                           
+   773                           ;main.c: 240: PREPULSE = 200;
+   774                           
+   775                           ;main.c: 241: }else{
+   776  00A8  290E               	ljmp	PL3	;call to abstracted procedure
+   777  00A9                     i1l1465:	
+   778                           
+   779                           ;main.c: 255: else if(necpoj>2 && necpoj<70)
+   780  00A9  3003               	movlw	3
+   781  00AA  022C               	subwf	_necpoj,w
+   782  00AB  1C03               	skipc
+   783  00AC  28EA               	goto	i1l1499
+   784  00AD  3046               	movlw	70
+   785  00AE  022C               	subwf	_necpoj,w
+   786  00AF  1803               	skipnc
+   787  00B0  28EA               	goto	i1l1499
+   788                           
+   789                           ;main.c: 256: {
+   790                           ;main.c: 258: necpoj++;
+   791  00B1  0AAC               	incf	_necpoj,f
+   792                           
+   793                           ;main.c: 260: if(necpoj&0x01)
+   794  00B2  1C2C               	btfss	_necpoj,0
+   795  00B3  28C5               	goto	i1l1479
+   796  00B4  3000               	movlw	0
+   797                           
+   798                           ;main.c: 262: {
+   799                           ;main.c: 263: rxbuffer=rxbuffer<<1;
+   800  00B5  1003               	clrc
+   801  00B6  0DA0               	rlf	interruptOnChangeIsr@rxbuffer,f
+   802  00B7  0DA1               	rlf	interruptOnChangeIsr@rxbuffer+1,f
+   803  00B8  0DA2               	rlf	interruptOnChangeIsr@rxbuffer+2,f
+   804  00B9  0DA3               	rlf	interruptOnChangeIsr@rxbuffer+3,f
+   805                           
+   806                           ;main.c: 264: if(tdiff>1250)
+   807  00BA  0237               	subwf	interruptOnChangeIsr@tdiff+2,w
+   808  00BB  1D03               	skipz
+   809  00BC  28C3               	goto	u50_25
+   810  00BD  3004               	movlw	4
+   811  00BE  0236               	subwf	interruptOnChangeIsr@tdiff+1,w
+   812  00BF  1D03               	skipz
+   813  00C0  28C3               	goto	u50_25
+   814  00C1  30E3               	movlw	227
+   815  00C2  0235               	subwf	interruptOnChangeIsr@tdiff,w
+   816  00C3                     u50_25:	
+   817  00C3  1803               	btfsc	3,0
+   818                           
+   819                           ;main.c: 266: {
+   820                           ;main.c: 267: rxbuffer = rxbuffer | 0x1;
+   821  00C4  1420               	bsf	interruptOnChangeIsr@rxbuffer,0
+   822  00C5                     i1l1479:	
+   823                           ;main.c: 268: }
+   824                           
+   825                           
+   826                           ;main.c: 272: }
+   827                           ;main.c: 274: }
+   828                           ;main.c: 276: if(necpoj >66)
+   829  00C5  3043               	movlw	67
+   830  00C6  022C               	subwf	_necpoj,w
+   831  00C7  1C03               	skipc
+   832  00C8  0008               	return
+   833                           
+   834                           ;main.c: 277: {
+   835                           ;main.c: 279: address = (rxbuffer>>24)& 0xFF;
+   836  00C9  0823               	movf	interruptOnChangeIsr@rxbuffer+3,w
+   837  00CA  00A9               	movwf	_address
+   838                           
+   839                           ;main.c: 280: notaddress = (rxbuffer>>16)& 0xFF;
+   840  00CB  0822               	movf	interruptOnChangeIsr@rxbuffer+2,w
+   841  00CC  00AD               	movwf	_notaddress
+   842                           
+   843                           ;main.c: 281: command = (rxbuffer>>8) & 0xFF;
+   844  00CD  0821               	movf	interruptOnChangeIsr@rxbuffer+1,w
+   845  00CE  00AA               	movwf	_command
+   846                           
+   847                           ;main.c: 282: notcommand = (rxbuffer) & 0xFF;
+   848  00CF  0820               	movf	interruptOnChangeIsr@rxbuffer,w
+   849  00D0  00AE               	movwf	_notcommand
+   850                           
+   851                           ;main.c: 283: rxbuffer=0;
+   852  00D1  01A0               	clrf	interruptOnChangeIsr@rxbuffer
+   853  00D2  01A1               	clrf	interruptOnChangeIsr@rxbuffer+1
+   854  00D3  01A2               	clrf	interruptOnChangeIsr@rxbuffer+2
+   855  00D4  01A3               	clrf	interruptOnChangeIsr@rxbuffer+3
+   856                           
+   857                           ;main.c: 285: if((!(address & notaddress)) && (!(command & notcommand)))
+   858  00D5  0829               	movf	_address,w
+   859  00D6  052D               	andwf	_notaddress,w
+   860  00D7  1D03               	btfss	3,2
+   861  00D8  28E4               	goto	i1l1493
+   862  00D9  082A               	movf	_command,w
+   863  00DA  052E               	andwf	_notcommand,w
+   864  00DB  1D03               	btfss	3,2
+   865  00DC  28E4               	goto	i1l1493
+   866  00DD  30C2               	movlw	194
+   867                           
+   868                           ;main.c: 286: {
+   869                           ;main.c: 287: dataready =1;
+   870  00DE  01AB               	clrf	_dataready
+   871  00DF  0AAB               	incf	_dataready,f
+   872                           
+   873                           ;main.c: 288: momantary= 450;
+   874  00E0  00A7               	movwf	_momantary
+   875  00E1  3001               	movlw	1
+   876  00E2  00A8               	movwf	_momantary+1
+   877                           
+   878                           ;main.c: 289: }
+   879  00E3  28E7               	goto	i1l1495
+   880  00E4                     i1l1493:	
+   881                           
+   882                           ;main.c: 290: else
+   883                           ;main.c: 291: {
+   884                           ;main.c: 292: dataready=0;
+   885  00E4  01AB               	clrf	_dataready
+   886                           
+   887                           ;main.c: 293: momantary= 0;
+   888  00E5  01A7               	clrf	_momantary
+   889  00E6  01A8               	clrf	_momantary+1
+   890  00E7                     i1l1495:	
+   891                           
+   892                           ;main.c: 294: }
+   893                           ;main.c: 295: TIMEOUT = 11044;
+   894                           
+   895                           ;main.c: 296: PREPULSE = 8032;
+   896  00E7  2105               	fcall	PL2	;call to abstracted procedure
+   897                           
+   898                           ;main.c: 297: necpoj=0;
+   899  00E8  01AC               	clrf	_necpoj
+   900  00E9  0008               	return
+   901  00EA                     i1l1499:	
+   902  00EA  082C               	movf	_necpoj,w
+   903  00EB  3A46               	xorlw	70
+   904  00EC  1D03               	skipz
+   905  00ED  28F5               	goto	i1l1509
+   906                           
+   907                           ;main.c: 301: {
+   908                           ;main.c: 302: momantary= 440;
+   909  00EE  30B8               	movlw	184
+   910  00EF  00A7               	movwf	_momantary
+   911  00F0  3001               	movlw	1
+   912  00F1  00A8               	movwf	_momantary+1
+   913  00F2                     i1l1453:	
+   914                           
+   915                           ;main.c: 242: necpoj = 0;
+   916  00F2  01AC               	clrf	_necpoj
+   917  00F3                     i1l1455:	
+   918                           
+   919                           ;main.c: 243: TIMEOUT = 11044;
+   920                           
+   921                           ;main.c: 244: PREPULSE = 8032;
+   922  00F3  2105               	fcall	PL2	;call to abstracted procedure
+   923  00F4  0008               	return
+   924  00F5                     i1l1509:	
+   925                           
+   926                           ;main.c: 311: else
+   927                           ;main.c: 312: {
+   928                           ;main.c: 314: TIMEOUT = 11044;
+   929                           
+   930                           ;main.c: 315: PREPULSE = 8032;
+   931  00F5  2105               	fcall	PL2	;call to abstracted procedure
+   932  00F6  0008               	return
+   933  00F7                     i1l1511:	
+   934                           ;main.c: 316: }
+   935                           ;main.c: 321: }
+   936                           
+   937                           
+   938                           ;main.c: 322: else
+   939                           ;main.c: 323: {
+   940                           ;main.c: 325: if(pin==0)
+   941  00F7  08B4               	movf	interruptOnChangeIsr@pin,f
+   942  00F8  1D03               	skipz
+   943  00F9  28FD               	goto	i1l1515
+   944                           
+   945                           ;main.c: 326: {
+   946                           ;main.c: 327: necpoj = 1;
+   947  00FA  01AC               	clrf	_necpoj
+   948  00FB  0AAC               	incf	_necpoj,f
+   949                           
+   950                           ;main.c: 328: }
+   951  00FC  28FE               	goto	i1l1517
+   952  00FD                     i1l1515:	
+   953                           
+   954                           ;main.c: 329: else
+   955                           ;main.c: 330: {
+   956                           ;main.c: 331: necpoj = 0;
+   957  00FD  01AC               	clrf	_necpoj
+   958  00FE                     i1l1517:	
+   959                           
+   960                           ;main.c: 332: }
+   961                           ;main.c: 334: address = 0xFF;
+   962  00FE  30FF               	movlw	255
+   963  00FF  00A9               	movwf	_address
+   964                           
+   965                           ;main.c: 335: notaddress = 0xFF;
+   966  0100  00AD               	movwf	_notaddress
+   967                           
+   968                           ;main.c: 336: command = 0xFF;
+   969  0101  00AA               	movwf	_command
+   970                           
+   971                           ;main.c: 337: notcommand = 0xFF;
+   972  0102  00AE               	movwf	_notcommand
+   973                           
+   974                           ;main.c: 338: dataready = 0x000;
+   975  0103  01AB               	clrf	_dataready
+   976  0104  28F3               	goto	i1l1455
+   977  0105                     __end_of_interruptOnChangeIsr:	
+   978  0105                     PL2:	
+   979  0105  3024               	movlw	36
+   980  0106  00BC               	movwf	_TIMEOUT
+   981  0107  302B               	movlw	43
+   982  0108  00BD               	movwf	_TIMEOUT+1
+   983  0109  3060               	movlw	96
+   984  010A  00BA               	movwf	_PREPULSE
+   985  010B  301F               	movlw	31
+   986  010C  00BB               	movwf	_PREPULSE+1
+   987  010D  0008               	return
+   988  010E                     PL3:	
+   989  010E  00BD               	movwf	_TIMEOUT+1
+   990  010F  30C8               	movlw	200
+   991  0110  00BA               	movwf	_PREPULSE
+   992  0111  01BB               	clrf	_PREPULSE+1
+   993  0112  0008               	return
+   994                           
+   995                           	psect	text79
+   996  015E                     __ptext79:	
+   997 ;; =============== function _interruptOnChangeIsr ends ============
+   998                           
+   999                           
+  1000 ;; *************** function _timerInterruptIsr *****************
+  1001 ;; Defined at:
+  1002 ;;		line 346 in file "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\New folder\main.c"
+  1003 ;; Parameters:    Size  Location     Type
+  1004 ;;		None
+  1005 ;; Auto vars:     Size  Location     Type
+  1006 ;;		None
+  1007 ;; Return value:  Size  Location     Type
+  1008 ;;		None               void
+  1009 ;; Registers used:
+  1010 ;;		wreg, status,2, status,0
+  1011 ;; Tracked objects:
+  1012 ;;		On entry : 20/0
+  1013 ;;		On exit  : 20/0
+  1014 ;;		Unchanged: FFFDF/0
+  1015 ;; Data sizes:     COMMON   BANK0
+  1016 ;;      Params:         0       0
+  1017 ;;      Locals:         0       0
+  1018 ;;      Temps:          0       0
+  1019 ;;      Totals:         0       0
+  1020 ;;Total ram usage:        0 bytes
+  1021 ;; Hardware stack levels used:    1
+  1022 ;; This function calls:
+  1023 ;;		Nothing
+  1024 ;; This function is called by:
+  1025 ;;		_t0intr
+  1026 ;; This function uses a non-reentrant model
+  1027 ;;
+  1028  015E                     _timerInterruptIsr:	
+  1029                           
+  1030                           ;main.c: 347: static char ms_counter,flag;
+  1031                           ;main.c: 348: if(timer<0xFFFF)
+  1032                           
+  1033                           ; Regs used in _timerInterruptIsr: [wreg+status,2+status,0]
+  1034  015E  3000               	movlw	0
+  1035  015F  0226               	subwf	_timer+2,w
+  1036  0160  1D03               	skipz
+  1037  0161  2968               	goto	u31_25
+  1038  0162  30FF               	movlw	255
+  1039  0163  0225               	subwf	_timer+1,w
+  1040  0164  1D03               	skipz
+  1041  0165  2968               	goto	u31_25
+  1042  0166  30FF               	movlw	255
+  1043  0167  0224               	subwf	_timer,w
+  1044  0168                     u31_25:	
+  1045  0168  1803               	skipnc
+  1046  0169  296F               	goto	i1l423
+  1047                           
+  1048                           ;main.c: 349: timer++;
+  1049  016A  0AA4               	incf	_timer,f
+  1050  016B  1903               	skipnz
+  1051  016C  0AA5               	incf	_timer+1,f
+  1052  016D  1903               	skipnz
+  1053  016E  0AA6               	incf	_timer+2,f
+  1054  016F                     i1l423:	
+  1055                           
+  1056                           ;main.c: 351: ms_counter++;
+  1057  016F  0AB0               	incf	timerInterruptIsr@ms_counter,f
+  1058                           
+  1059                           ;main.c: 352: if(ms_counter==4)
+  1060  0170  0830               	movf	timerInterruptIsr@ms_counter,w
+  1061  0171  3A04               	xorlw	4
+  1062  0172  1D03               	skipz
+  1063  0173  0008               	return
+  1064                           
+  1065                           ;main.c: 353: {
+  1066                           ;main.c: 354: ms_counter=0;
+  1067  0174  01B0               	clrf	timerInterruptIsr@ms_counter
+  1068                           
+  1069                           ;main.c: 355: if(momantary){
+  1070  0175  0828               	movf	_momantary+1,w
+  1071  0176  0427               	iorwf	_momantary,w
+  1072  0177  1903               	skipnz
+  1073  0178  2982               	goto	i1l1401
+  1074                           
+  1075                           ;main.c: 356: momantary--;
+  1076  0179  3001               	movlw	1
+  1077  017A  02A7               	subwf	_momantary,f
+  1078  017B  3000               	movlw	0
+  1079  017C  1C03               	skipc
+  1080  017D  03A8               	decf	_momantary+1,f
+  1081  017E  02A8               	subwf	_momantary+1,f
+  1082                           
+  1083                           ;main.c: 357: flag =1;
+  1084  017F  01AF               	clrf	timerInterruptIsr@flag
+  1085  0180  0AAF               	incf	timerInterruptIsr@flag,f
+  1086                           
+  1087                           ;main.c: 358: }else if(flag)
+  1088  0181  0008               	return
+  1089  0182                     i1l1401:	
+  1090  0182  082F               	movf	timerInterruptIsr@flag,w
+  1091  0183  1903               	btfsc	3,2
+  1092  0184  0008               	return
+  1093  0185  30B0               	movlw	176
+  1094                           
+  1095                           ;main.c: 359: {
+  1096                           ;main.c: 360: dataready=1;
+  1097  0186  01AB               	clrf	_dataready
+  1098  0187  0AAB               	incf	_dataready,f
+  1099                           
+  1100                           ;main.c: 361: flag=0;
+  1101  0188  01AF               	clrf	timerInterruptIsr@flag
+  1102                           
+  1103                           ;main.c: 362: command = 0xB0;
+  1104  0189  00AA               	movwf	_command
+  1105  018A  0008               	return
+  1106  018B                     __end_of_timerInterruptIsr:	
+  1107                           
+  1108                           	psect	text80
+  1109  0000                     __ptext80:	
+  1110 ;; =============== function _timerInterruptIsr ends ============
+  1111                           
+  1112  005E                     btemp	set	94	;btemp
+  1113  005E                     wtemp0	set	94
+
+
+HI-TECH Software PICC Macro Assembler V9.83 build 10920 
+Symbol Table                                                                                   Tue Jan 21 02:07:43 2014
+
+                           fsr 0004                            l380 0135                            l381 0137  
+                          l376 012F                            l378 0131                            l379 0133  
+                          _IOC 0096                            indf 0000          timerInterruptIsr@flag 002F  
+                         l1531 0000                           l1541 0000                           l1533 0000  
+                         l1551 0000                           l1543 0000                           l1535 0000  
+                         l1561 013C                           l1553 0000                           l1545 0000  
+                         l1537 0000                           l1529 0000                           l1571 0000  
+                         l1563 014D                           l1555 012B                           l1547 0000  
+                         l1539 0000                           l1573 0000                           l1565 0000  
+                         l1549 0000                           l1575 0000                           l1567 0000  
+                         l1577 0000                           l1569 0000                           l1579 0000  
+                         _GPIO 0005                           _TMR0 0001                           _main 0113  
+                         btemp 005E                           start 000B                          ?_main 0031  
+                        _EEADR 009B                          _CMCON 0019                          _ANSEL 009F  
+                        i1l423 016F                          i1l370 0196                          i1l367 0190  
+                        u31_25 0168                          u50_25 00C3                          u43_25 0078  
+                        u35_25 003F                          u44_25 0084                          u36_25 0050  
+                        u45_25 0096                          u46_25 00A2                          _timer 0024  
+                        pclath 000A                          status 0003                          wtemp0 005E  
+                 __end_of_main 015E           _interruptOnChangeIsr 0010                         ??_main 0000  
+                       _EEDATA 009A                         _EECON2 009D                         i1l1401 0182  
+                       i1l1403 0000                         i1l1411 0000                         i1l1405 0000  
+                       i1l1413 0000                         i1l1407 0000                         i1l1431 0000  
+                       i1l1423 0059                         i1l1511 00F7                         i1l1415 0000  
+                       i1l1521 0000                         i1l1425 0000                         i1l1433 0067  
+                       i1l1409 0000                         i1l1523 0000                         i1l1515 00FD  
+                       i1l1451 0000                         i1l1443 008C                         i1l1427 0000  
+                       i1l1517 00FE                         i1l1509 00F5                         i1l1453 00F2  
+                       i1l1429 0000                         i1l1381 0000                         i1l1373 0000  
+                       i1l1391 0000                         i1l1519 0000                         i1l1471 0000  
+                       i1l1455 00F3                         i1l1383 0000                         i1l1457 0000  
+                       i1l1449 0000                         i1l1465 00A9                         i1l1385 0000  
+                       i1l1377 0000                         i1l1395 0000                         i1l1387 0000  
+                       i1l1491 0000                         i1l1483 0000                         i1l1475 0000  
+                       i1l1493 00E4                         i1l1485 0000                         i1l1399 0000  
+                       i1l1495 00E7                         i1l1479 00C5                         i1l1497 0000  
+                       i1l1499 00EA                         _TRISIO 0085                         _t0intr 018B  
+                       _necpoj 002C          ?_interruptOnChangeIsr 0031                         clrloop 01AD  
+                       saved_w 005E                 __pcstackCOMMON 0000                   __pidataBANK0 0000  
+                   __pbssBANK0 0020                     __pmaintext 0113                        ?_t0intr 0031  
+       ??_interruptOnChangeIsr 0031                     __pintentry 0004                        _TIMEOUT 003C  
+              __size_of_t0intr 0012                        _address 0029                        _command 002A  
+         end_of_initialization 01AA                     _notaddress 002D                     _notcommand 002E  
+    interruptOnChangeIsr@tdiff 0035    timerInterruptIsr@ms_counter 0030              _timerInterruptIsr 015E  
+           ?_timerInterruptIsr 0031                 __end_of_t0intr 019D            ??_timerInterruptIsr 0000  
+          start_initialization 019D      __end_of_timerInterruptIsr 018B                       ??_t0intr 0038  
+                  __pdataBANK0 003A                  __pcstackBANK0 0031                      _dataready 002B  
+__size_of_interruptOnChangeIsr 00F5              interrupt_function 0004     __size_of_timerInterruptIsr 002D  
+                     _GPIObits 0005                      _momantary 0027                       _PREPULSE 003A  
+ interruptOnChangeIsr@rxbuffer 0020                     _EECON1bits 009C                       __ptext80 0000  
+                     __ptext77 018B                       __ptext78 0010                       __ptext79 015E  
+                __size_of_main 004B                       clear_ram 01AC                     _INTCONbits 000B  
+                     intlevel1 0000                     _OPTION_REG 0081        interruptOnChangeIsr@pin 0034  
+ __end_of_interruptOnChangeIsr 0105  
