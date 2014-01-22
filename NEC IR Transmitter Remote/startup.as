@@ -1,8 +1,7 @@
 
 	; HI-TECH C Compiler for PIC10/12/16 MCUs V9.83
 	; Copyright (C) 1984-2011 HI-TECH Software
-	;Licensed for evaluation purposes only.
-	;This licence will expire on Sat, 26 Oct 2013
+	;Serial no. HCPICP-123456
 
 	; Auto-generated runtime startup code for final link stage.
 

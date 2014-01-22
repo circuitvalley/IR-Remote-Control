@@ -1,7 +1,7 @@
 
-# 1 "J:\new work\MPLAB\New folder\main.c"
+# 1 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Transmitter Remote\main.c"
 
-# 78 "C:\Program Files\HI-TECH Software\PICC\9.83\include\pic12f615.h"
+# 78 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic12f615.h"
 volatile unsigned char INDF @ 0x000;
 
 
@@ -766,7 +766,7 @@ unsigned ADCS2 : 1;
 } ANSELbits @ 0x09F;
 
 
-# 27 "C:\Program Files\HI-TECH Software\PICC\9.83\include\pic.h"
+# 27 "C:\Program Files (x86)\HI-TECH Software\PICC\9.83\include\pic.h"
 #pragma inline(_nop)
 extern void _nop(void);
 
@@ -781,7 +781,7 @@ extern void flash_erase(unsigned short addr);
 #pragma inline(_delay)
 extern void _delay(unsigned long);
 
-# 10 "J:\new work\MPLAB\New folder\main.c"
+# 10 "C:\Users\Gaurav\Documents\GitHub\IR-Remote-Control\NEC IR Transmitter Remote\main.c"
 asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0xFFFC & 0xFFF7 & 0xFFFF & 0xFFDF & 0xFFFF & 0xFFFF & 0xFEFF");
 
 # 36
