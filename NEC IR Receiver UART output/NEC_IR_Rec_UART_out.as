@@ -678,16 +678,14 @@ l1463:
 	line	342
 	
 l1465:	
-;main.c: 342: _delay((unsigned long)(((1000000/9600))*(40000000/4000000.0)));
+;main.c: 342: _delay((unsigned long)(((1000000/9600))*(4000000/4000000.0)));
 	opt asmopt_off
-movlw	207
+movlw	34
 movwf	(??_UART_Transmit+0)+0,f
 u457:
-	nop2
 decfsz	(??_UART_Transmit+0)+0,f
 	goto	u457
-	nop2	;nop
-	nop2	;nop
+	clrwdt
 opt asmopt_on
 
 	line	344
@@ -739,16 +737,14 @@ l420:
 	
 l1477:	
 ;main.c: 354: }
-;main.c: 356: _delay((unsigned long)(((1000000/9600))*(40000000/4000000.0)));
+;main.c: 356: _delay((unsigned long)(((1000000/9600))*(4000000/4000000.0)));
 	opt asmopt_off
-movlw	207
+movlw	34
 movwf	(??_UART_Transmit+0)+0,f
 u467:
-	nop2
 decfsz	(??_UART_Transmit+0)+0,f
 	goto	u467
-	nop2	;nop
-	nop2	;nop
+	clrwdt
 opt asmopt_on
 
 	line	344
@@ -775,16 +771,14 @@ l419:
 	line	361
 	
 l1483:	
-;main.c: 361: _delay((unsigned long)(((1000000/9600))*(40000000/4000000.0)));
+;main.c: 361: _delay((unsigned long)(((1000000/9600))*(4000000/4000000.0)));
 	opt asmopt_off
-movlw	207
+movlw	34
 movwf	(??_UART_Transmit+0)+0,f
 u477:
-	nop2
 decfsz	(??_UART_Transmit+0)+0,f
 	goto	u477
-	nop2	;nop
-	nop2	;nop
+	clrwdt
 opt asmopt_on
 
 	line	362

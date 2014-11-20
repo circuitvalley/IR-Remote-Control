@@ -42,7 +42,7 @@ __CONFIG(FOSC_INTRCIO & WDTE_OFF & PWRTE_OFF & MCLRE_OFF & CP_OFF & CPD_OFF);
 
 #define IRSENSOR GPIObits.GPIO3		// IR PORT defination 
 
-#define _XTAL_FREQ	 40000000 //4Mhz internal osc
+#define _XTAL_FREQ	 4000000 //4Mhz internal osc
 
 //#define TICKSPERMS  1004      // tick in a milli second 
 #define TICKS11ms 	11044      	// ticks in 11ms
@@ -331,7 +331,7 @@ void UART_Transmit(char DataValue)
 {
 	/* Basic Logic
 	   
-	   TX pin is usually high. A high to low bit is the starting bit and 
+	   TX pin is idle high. A high to low bit is the starting bit and 
 	   a low to high bit is the ending bit. No parity bit. No flow control.
 	   BitCount is the number of bits to transmit. Data is transmitted LSB first.
 
