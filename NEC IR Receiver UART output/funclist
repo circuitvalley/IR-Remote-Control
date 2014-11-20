@@ -1,0 +1,6 @@
+_interruptOnChangeIsr: CODE, 16 0 177
+_main: CODE, 202 0 98
+_t0intr: CODE, 347 0 18
+_timerInterruptIsr: CODE, 365 0 18
+_UART_Transmit: CODE, 300 0 47
+Total: 358
