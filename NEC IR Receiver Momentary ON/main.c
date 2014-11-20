@@ -299,7 +299,7 @@ if ((tdiff>PREPULSE) && (tdiff<TIMEOUT) )		// the edge (interrupt) occurrence ti
 
 	}else if(necpoj == 70 )
 	{							// if developing volume control kind of application increase or decrease value here according to command received.
-		momantary= 440;		//~440ms is good enough even if we miss few repeat code		
+			momantary= 440;		//~440ms is good enough even if we miss few repeat code		
 			necpoj = 0;	
 			TIMEOUT 	=	TICKS11ms;						
 			PREPULSE 	=	TICKS8ms;
